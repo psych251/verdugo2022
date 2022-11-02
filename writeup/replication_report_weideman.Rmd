@@ -1,0 +1,109 @@
+---
+title: "Replication of Study 'Choice Boosts Curiosity' by Verdugo et al. (2022, Psychological Science)"
+author: "Austin Weideman"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+---
+
+<!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
+
+##Introduction
+
+The study 'Choice Boosts Curiosity' by Verdugo et al. (2022, Psychological Science) tested the effect of choice on curiosity when controlling for prechoice preference. Experiments tested if a participant's choice of a given lottery affected their subsequent curiosity about the results of the lottery. The target finding for replication is the increase in curiosity due to choice. 
+
+##Methods
+
+###Power Analysis
+
+The authors concluded that a sample size of at least 34 "would allow [them] to detect a within-subjects difference of at least a medium effect size (Cohen’s d > 0.5) with 80% power, using a two-tailed t test" (Verdugo et al., 2022). 
+
+###Planned Sample
+
+Sample size: n >= 34
+Demographics: Age 20-40, English speaking
+
+###Materials
+
+Survey recreated using Qualtrics.
+Participants recruited via Prolific.
+Data processed using R.
+
+###Procedure	
+
+The replication procedure follows the Experiment 1 procedure outlined in the original paper:
+
+"To assess the effect of choice on curiosity, we designed an experimental task in which we manipulated, on a trial-to-trial basis, whether participants made a choice or not and measured their subsequent curiosity. In each trial of the task, participants saw two lotteries, but only one was selected and played. Lotteries were depicted in the form of vases containing marbles, accompanied by a label indicating the number of points associated with each marble. Each vase contained 20 marbles of two types: blue and red. A marble could be worth any number from 10 to 90 points, in steps of 10 (10 points, 20 points, 30 points, etc.). The two types of marbles within a lottery always had different values. The distribution of marbles of each type within the vase ranged from 5% to 95% in steps of five (5%–95% of vase, 10%–90% of vase, 15%–85% of vase, etc.). On some trials, the participant chose the selected lottery, whereas on other trials, the computer selected it for them. Participants were told that they would always earn a monetary payoff in proportion to the points associated with the outcome of the selected lottery but that they could not always see the outcome after each trial. At the end of each trial, we assessed participants’ curiosity using ratings (Experiment 1: explicit curiosity)..."
+
+"At the beginning of each trial in Experiment 1 (explicit curiosity), participants saw two lotteries in the form of vases and indicated which one they preferred (a). After that, one of the two lotteries was selected, either by the participant (choice; 50% of trials) or by the computer (no choice; 50% of trials). This selected lottery both determined the reward that participants would receive and was subsequently addressed in the latter curiosity assessment, potentially providing curiosity relief. In no-choice trials, the computer selected the lottery initially preferred by the participant half of the time (no choice/preferred; 25% of total trials) and the other lottery half of the time (no choice/not preferred; 25% of total trials). This distinction within no-choice trials was not made explicit to participants. After providing a response, participants saw the selected lottery. They then indicated how curious they were using a scale ranging from 1 (not curious) to 4 (very curious). Finally, participants saw a screen in which the outcome of the lottery was either shown (50% of trials) or hidden (50% of trials). Whether the outcome was shown or hidden was determined randomly and was not contingent on participants’ curiosity responses. Participants were awarded the points corresponding to the outcome of the lottery in every trial (added to their total point sum), regardless of whether they got to see the outcome or not" (Verdugo et al., 2022).
+
+See Differences from Original Study for exceptions made to procedure.
+
+###Analysis Plan
+
+Can also quote directly, though it is less often spelled out effectively for an analysis strategy section.  The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.  
+
+**Clarify key analysis of interest here**  You can also pre-specify additional analyses you plan to do.
+
+###Differences from Original Study
+
+- Only Experiment 1 from the original study will be replicated.
+- The experiment will be run as a survey in Qualtrics rather than via the Presentation software (as in original study).
+- Participants will not give a verbal summary of instructions. Instead, they will acknowledge having read written instructions and will participate in an interactive tutorial with two practice trials (one choice and one no-choice) rather than 20 practice trials as in the original study.
+- A smaller selection of possible lotteries will be included (8 unique lotteries instead of 232).
+- Lotteries will be balanced so that they are more comparable. A set of highly disparate lotteries (eg. Vase 1 with 80/90 point marbles and Vase 2 with 10/20 point marbles) is theoretically possible under the constraints of original paper. Lotteries like this may exaggerate the differences in curiosity between preferred / not preferred options, since in some cases participants may be left with a comparatively worthless lottery and thus feel no curiosity about the result. In this replication, lotteries (still randomly generated) have the constraint that the lower marble value of one vase must be higher than the lowest value in the other vase, while at the same time the highest value of the first vase is lower than the highest value of the other vase. This constraint results in more comparable lotteries, nuanced decisions, and a more pleasing experience for participants since they will not feel robbed by the computer from any chance at getting points. Ideally, the resulting difference in curiosity between preferred / not preferred options will be more indicative of the effect of preference itself and not of anger or adverse reactions due to a large deficit in points that the participant may experience.
+- There will be no timed element to the survey in order to give participants time to answer questions accurately, taking into account that the initial training is far less intensive than in the original study, and the setting is remote rather than in-person. This will prevent haphazard responses that may occur with timed questions and missed responses due to auto-advancement.
+
+### Methods Addendum (Post Data Collection)
+
+You can comment this section out prior to final report with data collection.
+
+#### Actual Sample
+  Sample size, demographics, data exclusions based on rules spelled out in analysis plan
+
+#### Differences from pre-data collection methods plan
+  Any differences from what was described as the original plan, or “none”.
+
+
+##Results
+
+
+### Data preparation
+
+Data preparation following the analysis plan.
+	
+```{r include=F}
+###Data Preparation
+
+####Load Relevant Libraries and Functions
+
+####Import data
+
+#### Data exclusion / filtering
+
+#### Prepare data for analysis - create columns etc.
+```
+
+### Confirmatory analysis
+
+The analyses as specified in the analysis plan.  
+
+*Side-by-side graph with original graph is ideal here*
+
+###Exploratory analyses
+
+Any follow-up analyses desired (not required).  
+
+## Discussion
+
+### Summary of Replication Attempt
+
+Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.  
+
+### Commentary
+
+Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.
