@@ -14,7 +14,10 @@ output:
 
 ##Introduction
 
-The study 'Choice Boosts Curiosity' by Verdugo et al. (2022, Psychological Science) tested the effect of choice on curiosity when controlling for prechoice preference. Experiments tested if a participant's choice of a given lottery affected their subsequent curiosity about the results of the lottery. The target finding for replication is the increase in curiosity due to choice. 
+The study 'Choice Boosts Curiosity' by Verdugo et al. (2022, Psychological Science) tested the effect of choice on curiosity when controlling for prechoice preference. Experiments tested if a participant's choice of a given lottery affected their subsequent curiosity about the results of the lottery. The target finding for replication is the increase in curiosity due to choice.
+
+Link to githhub repository: https://github.com/psych251/verdugo2022
+Link to original paper: https://github.com/psych251/verdugo2022/blob/main/original_paper/verdugo2022.pdf
 
 ##Methods
 
@@ -55,7 +58,6 @@ Can also quote directly, though it is less often spelled out effectively for an 
 - The experiment will be run as a survey in Qualtrics rather than via the Presentation software (as in original study).
 - Participants will not give a verbal summary of instructions. Instead, they will acknowledge having read written instructions and will participate in an interactive tutorial with two practice trials (one choice and one no-choice) rather than 20 practice trials as in the original study.
 - A smaller selection of possible lotteries will be included (8 unique lotteries instead of 232).
-- Lotteries will be balanced so that they are more comparable. A set of highly disparate lotteries (eg. Vase 1 with 80/90 point marbles and Vase 2 with 10/20 point marbles) is theoretically possible under the constraints of original paper. Lotteries like this may exaggerate the differences in curiosity between preferred / not preferred options, since in some cases participants may be left with a comparatively worthless lottery and thus feel no curiosity about the result. In this replication, lotteries (still randomly generated) have the constraint that the lower marble value of one vase must be higher than the lowest value in the other vase, while at the same time the highest value of the first vase is lower than the highest value of the other vase. This constraint results in more comparable lotteries, nuanced decisions, and a more pleasing experience for participants since they will not feel robbed by the computer from any chance at getting points. Ideally, the resulting difference in curiosity between preferred / not preferred options will be more indicative of the effect of preference itself and not of anger or adverse reactions due to a large deficit in points that the participant may experience.
 - There will be no timed element to the survey in order to give participants time to answer questions accurately, taking into account that the initial training is far less intensive than in the original study, and the setting is remote rather than in-person. This will prevent haphazard responses that may occur with timed questions and missed responses due to auto-advancement.
 
 ### Methods Addendum (Post Data Collection)
@@ -63,7 +65,6 @@ Can also quote directly, though it is less often spelled out effectively for an 
 You can comment this section out prior to final report with data collection.
 
 #### Actual Sample
-  Sample size, demographics, data exclusions based on rules spelled out in analysis plan
 
 #### Differences from pre-data collection methods plan
   Any differences from what was described as the original plan, or “none”.
