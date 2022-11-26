@@ -1,5 +1,6 @@
 ---
-title: "Replication of Study 'Choice Boosts Curiosity' by Verdugo et al. (2022, Psychological Science)"
+title: Replication of Study 'Choice Boosts Curiosity' by Verdugo et al. (2022, Psychological
+  Science)
 author: "Austin Weideman"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
@@ -7,7 +8,10 @@ output:
     toc: yes
     toc_depth: 3
     toc_float:
-      collapsed: false
+      collapsed: no
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
 ---
 
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
@@ -17,7 +21,10 @@ output:
 The study 'Choice Boosts Curiosity' by Verdugo et al. (2022, Psychological Science) tested the effect of choice on curiosity when controlling for prechoice preference. Experiments tested if a participant's choice of a given lottery affected their subsequent curiosity about the results of the lottery. The target finding for replication is the increase in curiosity due to choice.
 
 Link to githhub repository: https://github.com/psych251/verdugo2022
+
 Link to original paper: https://github.com/psych251/verdugo2022/blob/main/original_paper/verdugo2022.pdf
+
+Link to paradigm: https://stanforduniversity.qualtrics.com/jfe/form/SV_eIETWpUoMKe1vHU
 
 ##Methods
 
@@ -27,14 +34,15 @@ The authors concluded that a sample size of at least 34 "would allow [them] to d
 
 ###Planned Sample
 
-Sample size: n >= 34
+Sample size: n >= 80 (much shorter length of experiment calls for more participants)
 Demographics: Age 20-40, English speaking
 
 ###Materials
 
-Survey recreated using Qualtrics.
+Survey recreated in Qualtrics.
+Random lotteries with comparable expected values (all within 1 point) and comparable outcome uncertainties (all within 50 points) generated using a Python program I wrote.
 Participants recruited via Prolific.
-Data processed using R.
+Data processed using R programming language.
 
 ###Procedure	
 
@@ -48,16 +56,16 @@ See Differences from Original Study for exceptions made to procedure.
 
 ###Analysis Plan
 
-Can also quote directly, though it is less often spelled out effectively for an analysis strategy section.  The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.  
+Key measure: Average difference in self-reported curiosity between Choice/Preferred and No-Choice/Preferred trials
 
-**Clarify key analysis of interest here**  You can also pre-specify additional analyses you plan to do.
+Can also quote directly, though it is less often spelled out effectively for an analysis strategy section.  The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.  
 
 ###Differences from Original Study
 
-- Only Experiment 1 from the original study will be replicated.
+- Only Experiment 1 from the original study will be replicated. Only the key claim of the paper (the difference in curiosity between Choice/Preferred and No-Choice/Preferred conditions) will be measured. Curiosity as a function of expected value and outcome uncertainty will not be discussed.
 - The experiment will be run as a survey in Qualtrics rather than via the Presentation software (as in original study).
 - Participants will not give a verbal summary of instructions. Instead, they will acknowledge having read written instructions and will participate in an interactive tutorial with two practice trials (one choice and one no-choice) rather than 20 practice trials as in the original study.
-- A smaller selection of possible lotteries will be included (8 unique lotteries instead of 232).
+- A smaller selection of lotteries will be included due to time constraint. There will be 6 unique lotteries, so 12 total trials (one choice and one no-choice for each lottery).
 - There will be no timed element to the survey in order to give participants time to answer questions accurately, taking into account that the initial training is far less intensive than in the original study, and the setting is remote rather than in-person. This will prevent haphazard responses that may occur with timed questions and missed responses due to auto-advancement.
 
 ### Methods Addendum (Post Data Collection)
@@ -76,7 +84,61 @@ You can comment this section out prior to final report with data collection.
 ### Data preparation
 
 Data preparation following the analysis plan.
-	
+
+```{r}
+library(tidyverse)
+cc_data <- read.csv('/Users/austinweideman/Desktop/curiosity_6trials.csv')
+data <- cc_data
+# curiosities = data %>% select(contains("Curiosity"), -contains("Tut"))
+# view(curiosities)
+# view(data)
+data_compact <- data[c(4),]
+trials_data = data_compact %>% select(T1.C.Curiosity_1, T1.NC.Curiosity_1, T1Pref)
+row2 = data_compact %>% select(T2.C.Curiosity_1, T2.NC.Curiosity_1, T2Pref)
+row3 = data_compact %>% select(T3.C.Curiosity_1, T3.NC.Curiosity_1, T3Pref)
+row4 = data_compact %>% select(T4.C.Curiosity_1, T4.NC.Curiosity_1, T4Pref)
+row5 = data_compact %>% select(T5.C.Curiosity_1, T5.NC.Curiosity_1, T5Pref)
+row6 = data_compact %>% select(T6.C.Curiosity_1, T6.NC.Curiosity_1, T6Pref)
+trials_data[nrow(trials_data) + 1,] = row2
+trials_data[nrow(trials_data) + 1,] = row3
+trials_data[nrow(trials_data) + 1,] = row4
+trials_data[nrow(trials_data) + 1,] = row5
+trials_data[nrow(trials_data) + 1,] = row6
+colnames(trials_data) <- c('C_Curiosity', 'NC_Curiosity', 'NC_Preferred')
+rownames(trials_data) <- c('T1', 'T2', 'T3', 'T4', 'T5', 'T6')
+# below are the choice/no-choice curiosity ratings for all 12 games from one participant, with a column indicating whether the no-choice game selected their preferred (True) or not preferred (False) vase
+trials_data
+```
+```{r}
+c_sum_not_pref = 0
+nc_sum_not_pref = 0
+c_sum_pref = 0
+nc_sum_pref = 0
+for (row in 1:nrow(trials_data)) {
+  pref <- trials_data[row, 'NC_Preferred']
+  c_curiosity <- trials_data[row, 'C_Curiosity']
+  nc_curiosity <- trials_data[row, 'NC_Curiosity']
+  c_curiosity <- strtoi(c_curiosity)
+  nc_curiosity <- strtoi(nc_curiosity)
+  if (pref == 'True') {
+    c_sum_pref <- c_sum_pref + c_curiosity
+    nc_sum_pref <- nc_sum_pref + nc_curiosity
+  }
+  if (pref == 'False') {
+    c_sum_not_pref <- c_sum_not_pref + c_curiosity
+    nc_sum_not_pref <- nc_sum_not_pref + nc_curiosity
+  }
+}
+# average choice/preferred curiosity rating for those games with a matching no-choice/preferred game from this participant
+avg_c_pref <- c_sum_pref / 3
+avg_c_pref
+# average no-choice/preferred curiosity rating for the same three games for the same partipant
+avg_nc_pref <- nc_sum_pref / 3
+avg_nc_pref
+table <- c(avg_c_pref, avg_nc_pref)
+barplot(table, main = 'Average Curiosity Ratings', names.arg=c('Choice/Preferred', 'No-Choice/Preferred'))
+```
+
 ```{r include=F}
 ###Data Preparation
 
