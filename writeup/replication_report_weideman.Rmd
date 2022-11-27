@@ -20,37 +20,33 @@ output:
 
 The study 'Choice Boosts Curiosity' by Verdugo et al. (2022, Psychological Science) tested the effect of choice on curiosity when controlling for prechoice preference. Experiments tested if a participant's choice of a given lottery affected their subsequent curiosity about the results of the lottery. The target finding for replication is the increase in curiosity due to choice.
 
-Link to githhub repository: https://github.com/psych251/verdugo2022
+Link to githhub repository: <https://github.com/psych251/verdugo2022>
 
-Link to original paper: https://github.com/psych251/verdugo2022/blob/main/original_paper/verdugo2022.pdf
+Link to original paper: <https://github.com/psych251/verdugo2022/blob/main/original_paper/verdugo2022.pdf>
 
-Link to paradigm: https://stanforduniversity.qualtrics.com/jfe/form/SV_eIETWpUoMKe1vHU
+Link to paradigm: <https://stanforduniversity.qualtrics.com/jfe/form/SV_eIETWpUoMKe1vHU>
 
 ##Methods
 
 ###Power Analysis
 
-The authors concluded that a sample size of at least 34 "would allow [them] to detect a within-subjects difference of at least a medium effect size (Cohen’s d > 0.5) with 80% power, using a two-tailed t test" (Verdugo et al., 2022). 
+The authors concluded that a sample size of at least 34 "would allow [them] to detect a within-subjects difference of at least a medium effect size (Cohen's d \> 0.5) with 80% power, using a two-tailed t test" (Verdugo et al., 2022).
 
 ###Planned Sample
 
-Sample size: n >= 80 (much shorter length of experiment calls for more participants)
-Demographics: Age 20-40, English speaking
+Sample size: n \>= 80 (much shorter length of experiment calls for more participants) Demographics: Age 20-40, English speaking
 
 ###Materials
 
-Survey recreated in Qualtrics.
-Random lotteries with comparable expected values (all within 1 point) and comparable outcome uncertainties (all within 50 points) generated using a Python program I wrote.
-Participants recruited via Prolific.
-Data processed using R programming language.
+Survey recreated in Qualtrics. Random lotteries with comparable expected values (all within 1 point) and comparable outcome uncertainties (all within 50 points) generated using a Python program I wrote. Participants recruited via Prolific. Data processed using R programming language.
 
-###Procedure	
+###Procedure
 
 The replication procedure follows the Experiment 1 procedure outlined in the original paper:
 
-"To assess the effect of choice on curiosity, we designed an experimental task in which we manipulated, on a trial-to-trial basis, whether participants made a choice or not and measured their subsequent curiosity. In each trial of the task, participants saw two lotteries, but only one was selected and played. Lotteries were depicted in the form of vases containing marbles, accompanied by a label indicating the number of points associated with each marble. Each vase contained 20 marbles of two types: blue and red. A marble could be worth any number from 10 to 90 points, in steps of 10 (10 points, 20 points, 30 points, etc.). The two types of marbles within a lottery always had different values. The distribution of marbles of each type within the vase ranged from 5% to 95% in steps of five (5%–95% of vase, 10%–90% of vase, 15%–85% of vase, etc.). On some trials, the participant chose the selected lottery, whereas on other trials, the computer selected it for them. Participants were told that they would always earn a monetary payoff in proportion to the points associated with the outcome of the selected lottery but that they could not always see the outcome after each trial. At the end of each trial, we assessed participants’ curiosity using ratings (Experiment 1: explicit curiosity)..."
+"To assess the effect of choice on curiosity, we designed an experimental task in which we manipulated, on a trial-to-trial basis, whether participants made a choice or not and measured their subsequent curiosity. In each trial of the task, participants saw two lotteries, but only one was selected and played. Lotteries were depicted in the form of vases containing marbles, accompanied by a label indicating the number of points associated with each marble. Each vase contained 20 marbles of two types: blue and red. A marble could be worth any number from 10 to 90 points, in steps of 10 (10 points, 20 points, 30 points, etc.). The two types of marbles within a lottery always had different values. The distribution of marbles of each type within the vase ranged from 5% to 95% in steps of five (5%--95% of vase, 10%--90% of vase, 15%--85% of vase, etc.). On some trials, the participant chose the selected lottery, whereas on other trials, the computer selected it for them. Participants were told that they would always earn a monetary payoff in proportion to the points associated with the outcome of the selected lottery but that they could not always see the outcome after each trial. At the end of each trial, we assessed participants' curiosity using ratings (Experiment 1: explicit curiosity)..."
 
-"At the beginning of each trial in Experiment 1 (explicit curiosity), participants saw two lotteries in the form of vases and indicated which one they preferred (a). After that, one of the two lotteries was selected, either by the participant (choice; 50% of trials) or by the computer (no choice; 50% of trials). This selected lottery both determined the reward that participants would receive and was subsequently addressed in the latter curiosity assessment, potentially providing curiosity relief. In no-choice trials, the computer selected the lottery initially preferred by the participant half of the time (no choice/preferred; 25% of total trials) and the other lottery half of the time (no choice/not preferred; 25% of total trials). This distinction within no-choice trials was not made explicit to participants. After providing a response, participants saw the selected lottery. They then indicated how curious they were using a scale ranging from 1 (not curious) to 4 (very curious). Finally, participants saw a screen in which the outcome of the lottery was either shown (50% of trials) or hidden (50% of trials). Whether the outcome was shown or hidden was determined randomly and was not contingent on participants’ curiosity responses. Participants were awarded the points corresponding to the outcome of the lottery in every trial (added to their total point sum), regardless of whether they got to see the outcome or not" (Verdugo et al., 2022).
+"At the beginning of each trial in Experiment 1 (explicit curiosity), participants saw two lotteries in the form of vases and indicated which one they preferred (a). After that, one of the two lotteries was selected, either by the participant (choice; 50% of trials) or by the computer (no choice; 50% of trials). This selected lottery both determined the reward that participants would receive and was subsequently addressed in the latter curiosity assessment, potentially providing curiosity relief. In no-choice trials, the computer selected the lottery initially preferred by the participant half of the time (no choice/preferred; 25% of total trials) and the other lottery half of the time (no choice/not preferred; 25% of total trials). This distinction within no-choice trials was not made explicit to participants. After providing a response, participants saw the selected lottery. They then indicated how curious they were using a scale ranging from 1 (not curious) to 4 (very curious). Finally, participants saw a screen in which the outcome of the lottery was either shown (50% of trials) or hidden (50% of trials). Whether the outcome was shown or hidden was determined randomly and was not contingent on participants' curiosity responses. Participants were awarded the points corresponding to the outcome of the lottery in every trial (added to their total point sum), regardless of whether they got to see the outcome or not" (Verdugo et al., 2022).
 
 See Differences from Original Study for exceptions made to procedure.
 
@@ -58,15 +54,15 @@ See Differences from Original Study for exceptions made to procedure.
 
 Key measure: Average difference in self-reported curiosity between Choice/Preferred and No-Choice/Preferred trials
 
-Can also quote directly, though it is less often spelled out effectively for an analysis strategy section.  The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.  
+Can also quote directly, though it is less often spelled out effectively for an analysis strategy section. The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.
 
 ###Differences from Original Study
 
-- Only Experiment 1 from the original study will be replicated. Only the key claim of the paper (the difference in curiosity between Choice/Preferred and No-Choice/Preferred conditions) will be measured. Curiosity as a function of expected value and outcome uncertainty will not be discussed.
-- The experiment will be run as a survey in Qualtrics rather than via the Presentation software (as in original study).
-- Participants will not give a verbal summary of instructions. Instead, they will acknowledge having read written instructions and will participate in an interactive tutorial with two practice trials (one choice and one no-choice) rather than 20 practice trials as in the original study.
-- A smaller selection of lotteries will be included due to time constraint. There will be 6 unique lotteries, so 12 total trials (one choice and one no-choice for each lottery).
-- There will be no timed element to the survey in order to give participants time to answer questions accurately, taking into account that the initial training is far less intensive than in the original study, and the setting is remote rather than in-person. This will prevent haphazard responses that may occur with timed questions and missed responses due to auto-advancement.
+-   Only Experiment 1 from the original study will be replicated. Only the key claim of the paper (the difference in curiosity between Choice/Preferred and No-Choice/Preferred conditions) will be measured. Curiosity as a function of expected value and outcome uncertainty will not be discussed.
+-   The experiment will be run as a survey in Qualtrics rather than via the Presentation software (as in original study).
+-   Participants will not give a verbal summary of instructions. Instead, they will acknowledge having read written instructions and will participate in an interactive tutorial with two practice trials (one choice and one no-choice) rather than 20 practice trials as in the original study.
+-   A smaller selection of lotteries will be included due to time constraint. There will be 6 unique lotteries, so 12 total trials (one choice and one no-choice for each lottery).
+-   There will be no timed element to the survey in order to give participants time to answer questions accurately, taking into account that the initial training is far less intensive than in the original study, and the setting is remote rather than in-person. This will prevent haphazard responses that may occur with timed questions and missed responses due to auto-advancement.
 
 ### Methods Addendum (Post Data Collection)
 
@@ -75,23 +71,68 @@ You can comment this section out prior to final report with data collection.
 #### Actual Sample
 
 #### Differences from pre-data collection methods plan
-  Any differences from what was described as the original plan, or “none”.
 
+Any differences from what was described as the original plan, or "none".
 
 ##Results
-
 
 ### Data preparation
 
 Data preparation following the analysis plan.
 
 ```{r}
+# load data
 library(tidyverse)
 cc_data <- read.csv('/Users/austinweideman/Desktop/curiosity_6trials.csv')
 data <- cc_data
-# curiosities = data %>% select(contains("Curiosity"), -contains("Tut"))
-# view(curiosities)
 # view(data)
+```
+
+```{r}
+# put all participant trials into one larger table
+all_participant_trials <- data.frame(matrix(ncol = 5, nrow = 0))
+
+i = 1
+num_valid_participants = 0
+for (row in 3:nrow(data)) {
+  participant_row <- data[c(row),]
+  # move to next participant if duration of survey is unreasonably fast or slow
+  # move to next participant if current participant did not complete survey
+  duration <- strtoi(participant_row['Duration..in.seconds.'])
+  finished <- participant_row['Finished']
+  if (duration < 255 || duration > 1000 || finished == 'False') {
+    next
+  }
+  else {
+    num_valid_participants = num_valid_participants + 1
+  }
+  # exclude trial if preference does not match choice
+  t1 = participant_row %>% select(T1.C.Curiosity_1, T1.NC.Curiosity_1, T1Pref)
+  t2 = participant_row %>% select(T2.C.Curiosity_1, T2.NC.Curiosity_1, T2Pref)
+  t3 = participant_row %>% select(T3.C.Curiosity_1, T3.NC.Curiosity_1, T3Pref)
+  t4 = participant_row %>% select(T4.C.Curiosity_1, T4.NC.Curiosity_1, T4Pref)
+  t5 = participant_row %>% select(T5.C.Curiosity_1, T5.NC.Curiosity_1, T5Pref)
+  t6 = participant_row %>% select(T6.C.Curiosity_1, T6.NC.Curiosity_1, T6Pref)
+  part_trials_data <- t1
+  part_trials_data[2,] = t2
+  part_trials_data[3,] = t3
+  part_trials_data[4,] = t4
+  part_trials_data[5,] = t5
+  part_trials_data[6,] = t6
+  temp1 <- cbind(Trial = c('T1', 'T2', 'T3', 'T4', 'T5', 'T6'), part_trials_data)
+  part_trials_data <- cbind(Participant = row-2, temp1)
+  all_participant_trials = rbind(all_participant_trials, part_trials_data)
+}
+colnames(all_participant_trials) <- c('Participant', 'Trial', 'C_Curiosity', 'NC_Curiosity', 'NC_Preferred')
+rownames(all_participant_trials) <- NULL
+
+# below are all essential data from all 6 trials for each valid participant
+all_participant_trials
+num_valid_participants
+
+```
+
+```{r}
 data_compact <- data[c(4),]
 trials_data = data_compact %>% select(T1.C.Curiosity_1, T1.NC.Curiosity_1, T1Pref)
 row2 = data_compact %>% select(T2.C.Curiosity_1, T2.NC.Curiosity_1, T2Pref)
@@ -99,21 +140,27 @@ row3 = data_compact %>% select(T3.C.Curiosity_1, T3.NC.Curiosity_1, T3Pref)
 row4 = data_compact %>% select(T4.C.Curiosity_1, T4.NC.Curiosity_1, T4Pref)
 row5 = data_compact %>% select(T5.C.Curiosity_1, T5.NC.Curiosity_1, T5Pref)
 row6 = data_compact %>% select(T6.C.Curiosity_1, T6.NC.Curiosity_1, T6Pref)
-trials_data[nrow(trials_data) + 1,] = row2
-trials_data[nrow(trials_data) + 1,] = row3
-trials_data[nrow(trials_data) + 1,] = row4
-trials_data[nrow(trials_data) + 1,] = row5
-trials_data[nrow(trials_data) + 1,] = row6
+trials_data[2,] = row2
+trials_data[3,] = row3
+trials_data[4,] = row4
+trials_data[5,] = row5
+trials_data[6,] = row6
 colnames(trials_data) <- c('C_Curiosity', 'NC_Curiosity', 'NC_Preferred')
+
+# below are the choice/no-choice curiosity ratings for all 12 games from participant 2, with a column indicating whether the no-choice game selected their preferred (True) or not preferred (False) vase
+trials_data1 <- cbind(Trial = c('T1', 'T2', 'T3', 'T4', 'T5', 'T6'), trials_data)
+trials_data2 <- cbind(Participant = 2, trials_data1)
 rownames(trials_data) <- c('T1', 'T2', 'T3', 'T4', 'T5', 'T6')
-# below are the choice/no-choice curiosity ratings for all 12 games from one participant, with a column indicating whether the no-choice game selected their preferred (True) or not preferred (False) vase
-trials_data
+rownames(trials_data2) <- NULL
+trials_data2
 ```
+
 ```{r}
 c_sum_not_pref = 0
 nc_sum_not_pref = 0
 c_sum_pref = 0
 nc_sum_pref = 0
+divisor = 0
 for (row in 1:nrow(trials_data)) {
   pref <- trials_data[row, 'NC_Preferred']
   c_curiosity <- trials_data[row, 'C_Curiosity']
@@ -123,6 +170,7 @@ for (row in 1:nrow(trials_data)) {
   if (pref == 'True') {
     c_sum_pref <- c_sum_pref + c_curiosity
     nc_sum_pref <- nc_sum_pref + nc_curiosity
+    divisor = divisor + 1
   }
   if (pref == 'False') {
     c_sum_not_pref <- c_sum_not_pref + c_curiosity
@@ -130,13 +178,75 @@ for (row in 1:nrow(trials_data)) {
   }
 }
 # average choice/preferred curiosity rating for those games with a matching no-choice/preferred game from this participant
-avg_c_pref <- c_sum_pref / 3
+avg_c_pref <- c_sum_pref / divisor
 avg_c_pref
-# average no-choice/preferred curiosity rating for the same three games for the same partipant
-avg_nc_pref <- nc_sum_pref / 3
+# average no-choice/preferred curiosity rating for the same three games for the same participant
+avg_nc_pref <- nc_sum_pref / divisor
 avg_nc_pref
 table <- c(avg_c_pref, avg_nc_pref)
-barplot(table, main = 'Average Curiosity Ratings', names.arg=c('Choice/Preferred', 'No-Choice/Preferred'))
+barplot(table, main = 'Average Curiosity Ratings for Participant 2', names.arg=c('Choice/Preferred', 'No-Choice/Preferred'))
+```
+
+```{r}
+c_sum_not_pref = 0
+nc_sum_not_pref = 0
+c_sum_pref = 0
+nc_sum_pref = 0
+divisor = 0
+# this assumes all choices are preferred
+for (row in 1:nrow(all_participant_trials)) {
+  pref <- all_participant_trials[row, 'NC_Preferred']
+  c_curiosity <- strtoi(all_participant_trials[row, 'C_Curiosity'])
+  nc_curiosity <- strtoi(all_participant_trials[row, 'NC_Curiosity'])
+  if (pref == 'True') {
+    c_sum_pref <- c_sum_pref + c_curiosity
+    nc_sum_pref <- nc_sum_pref + nc_curiosity
+    divisor = divisor + 1
+  }
+  if (pref == 'False') {
+    c_sum_not_pref <- c_sum_not_pref + c_curiosity
+    nc_sum_not_pref <- nc_sum_not_pref + nc_curiosity
+  }
+}
+# average choice/preferred curiosity rating for those games with a matching no-choice/preferred game from all participants
+avg_c_pref <- c_sum_pref / divisor
+avg_c_pref
+# average no-choice/preferred curiosity rating for the same games
+avg_nc_pref <- nc_sum_pref / divisor
+avg_nc_pref
+table <- c(avg_c_pref, avg_nc_pref)
+barplot(table, main = 'Average Curiosity Ratings (All Participants)', names.arg=c('Choice/Preferred', 'No-Choice/Preferred'))
+```
+```{r}
+c_sum = 0
+nc_sum_not_pref = 0
+nc_sum_pref = 0
+c_divisor = 0
+nc_divisor = 0
+# this assumes all choices are preferred
+for (row in 1:nrow(all_participant_trials)) {
+  pref <- all_participant_trials[row, 'NC_Preferred']
+  c_curiosity <- strtoi(all_participant_trials[row, 'C_Curiosity'])
+  nc_curiosity <- strtoi(all_participant_trials[row, 'NC_Curiosity'])
+  if (pref == 'True') {
+    nc_sum_pref <- nc_sum_pref + nc_curiosity
+    nc_divisor = nc_divisor + 1
+  }
+  if (pref == 'False') {
+    nc_sum_not_pref <- nc_sum_not_pref + nc_curiosity
+  }
+  c_sum = c_sum + c_curiosity
+  c_divisor = c_divisor + 1
+}
+avg_c_curiosity <- c_sum / c_divisor
+avg_nc_pref_curiosity <- nc_sum_pref / nc_divisor
+
+# average choice/preferred curiosity ratings across ALL trials (including those with just NC/not preferred), not just those with a matching NC/Pref game
+avg_c_curiosity
+avg_nc_pref_curiosity
+
+table <- c(avg_c_curiosity, avg_nc_pref_curiosity)
+barplot(table, main = 'Average Curiosity Ratings (All Participants)', names.arg=c('Choice/Preferred', 'No-Choice/Preferred'))
 ```
 
 ```{r include=F}
@@ -153,20 +263,20 @@ barplot(table, main = 'Average Curiosity Ratings', names.arg=c('Choice/Preferred
 
 ### Confirmatory analysis
 
-The analyses as specified in the analysis plan.  
+The analyses as specified in the analysis plan.
 
 *Side-by-side graph with original graph is ideal here*
 
 ###Exploratory analyses
 
-Any follow-up analyses desired (not required).  
+Any follow-up analyses desired (not required).
 
 ## Discussion
 
 ### Summary of Replication Attempt
 
-Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.  
+Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.
 
 ### Commentary
 
-Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.
+Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt. None of these need to be long.
