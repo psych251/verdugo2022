@@ -54,8 +54,6 @@ See Differences from Original Study for exceptions made to procedure.
 
 Key measure: Average difference in self-reported curiosity between Choice/Preferred and No-Choice/Preferred trials
 
-Can also quote directly, though it is less often spelled out effectively for an analysis strategy section. The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.
-
 ###Differences from Original Study
 
 -   Only Experiment 1 from the original study will be replicated. Only the key claim of the paper (the difference in curiosity between Choice/Preferred and No-Choice/Preferred conditions) will be measured. Curiosity as a function of expected value and outcome uncertainty will not be discussed.
@@ -66,19 +64,20 @@ Can also quote directly, though it is less often spelled out effectively for an 
 
 ### Methods Addendum (Post Data Collection)
 
-You can comment this section out prior to final report with data collection.
-
 #### Actual Sample
 
 #### Differences from pre-data collection methods plan
-
-Any differences from what was described as the original plan, or "none".
 
 ##Results
 
 ### Data preparation
 
-Data preparation following the analysis plan.
+I will closely follow the data preparation outlined in the original paper:
+
+"We filtered out trials in which participants missed or did not respond within the allocated times for any of the three required responses (0.37% of total trials in Experiment 1; 0.37% in Experiment 2). Furthermore, we filtered out choice trials in which participants had chosen a lottery other than their preferred one (2.73% of total trials in Experiment 1; 2.93% in Experiment 2). Because we expected participants to exhibit their preferences through their choices, we assumed that inconsistencies were due to changes of mind or response errors.
+We sorted the remaining trials into three selection conditions: choice-preferred trials (48.61% of included trials in Experiment 1; 48.42% in Experiment 2), no-choice/preferred trials (25.72% of included trials in Experiment 1; 25.79% in Experiment 2), and no-choice/not-preferred trials (25.67% of included trials in Experiment 1; 25.79% in Experiment 2)" (Verdugo et al., 2022).
+
+I will discount responses from participants who took far too long to complete the survey (>16 minutes) and those who were unreasonably fast (<4 and a half minutes). Within participant responses, I will not include trials in which participants chose a different vase than the one they preferred.
 
 ```{r}
 # load data
@@ -263,20 +262,13 @@ barplot(table, main = 'Average Curiosity Ratings (All Participants)', names.arg=
 
 ### Confirmatory analysis
 
-The analyses as specified in the analysis plan.
-
 *Side-by-side graph with original graph is ideal here*
 
 ###Exploratory analyses
-
-Any follow-up analyses desired (not required).
 
 ## Discussion
 
 ### Summary of Replication Attempt
 
-Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.
-
 ### Commentary
 
-Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt. None of these need to be long.
