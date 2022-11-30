@@ -1,7 +1,7 @@
 # verdugo2022
 Replication of the study "Choice Boosts Curiosity" by Verdugo et al. (Psychological Science, 2022)
 
-RPubs: https://rpubs.com/austinw/969391
+RPubs: https://rpubs.com/austinw/975419
 
 Link to original paper: https://journals.sagepub.com/doi/full/10.1177/09567976221082637
 

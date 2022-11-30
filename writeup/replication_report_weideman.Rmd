@@ -97,21 +97,34 @@ data <- cc_data
 all_participant_trials <- data.frame(matrix(ncol = 5, nrow = 0))
 
 # create the table, keeping in mind exclusions
+excluded_participants <- data.frame(matrix(ncol = 2, nrow = 0))
+colnames(excluded_participants) <- cbind('Excluded', 'Reason')
 i = 1
 num_participants = 0
 for (row in 3:nrow(data)) {
   participant_row <- data[c(row),]
-  
+  participant <- row-2
+  num_participants = num_participants + 1
+
   duration <- strtoi(participant_row['Duration..in.seconds.'])
   finished <- participant_row['Finished']
   
   # move to next participant if duration of survey is unreasonably fast or slow
   # or if current participant did not complete survey
-  if (duration < 255 || duration > 1000 || finished == 'False') {
+  if (duration < 255) {
+    excluded_part <- c(participant, 'Too Fast')
+    excluded_participants[nrow(excluded_participants)+1,] <- excluded_part
     next
   }
-  else {
-    num_participants = num_participants + 1
+  if (duration > 1000) {
+    excluded_part <- c(participant, 'Too Slow')
+    excluded_participants[nrow(excluded_participants)+1,] <- excluded_part
+    next
+  }
+  if (finished == 'False') {
+    excluded_part <- c(participant, 'Unfinished')
+    excluded_participants[nrow(excluded_participants)+1,] <- excluded_part
+    next
   }
   t1 = participant_row %>% dplyr::select(T1.C.Preference, T1.Choice.Vase, T1.C.Curiosity_1, T1.NC.Curiosity_1, T1Pref)
   t2 = participant_row %>% dplyr::select(T2.C.Preference, T2.Choice.Vase, T2.C.Curiosity_1, T2.NC.Curiosity_1, T2Pref)
@@ -126,7 +139,7 @@ for (row in 3:nrow(data)) {
   part_trials_data[nrow(part_trials_data) + 1,] = t5
   part_trials_data[nrow(part_trials_data) + 1,] = t6
   temp1 <- cbind(Trial = c('T1', 'T2', 'T3', 'T4', 'T5', 'T6'), part_trials_data)
-  part_trials_data <- cbind(Participant = row-2, temp1)
+  part_trials_data <- cbind(Participant = participant, temp1)
   all_participant_trials = rbind(all_participant_trials, part_trials_data)
 }
 colnames(all_participant_trials) <- c('Participant', 'Trial', 'C_Preference', 'Choice', 'C_Curiosity', 'NC_Curiosity', 'NC_Preferred')
@@ -135,7 +148,10 @@ rownames(all_participant_trials) <- NULL
 # number of participants
 num_participants
 
-# essential data from all 6 trials for all valid participants
+# excluded participants (none so far)
+excluded_participants
+
+# essential data from all 6 trials for all participants
 all_participant_trials
 ```
 
@@ -179,8 +195,13 @@ for (participant in 1:num_participants) {
   counts <- c(num1, num2, num3, num4)
   if (max(counts) > 8) {
     filtered_participant_trials <- filtered_participant_trials %>% filter(Participant != participant)
+    excluded_part <- c(participant, 'Too many similar responses')
+    excluded_participants[nrow(excluded_participants)+1,] <- excluded_part
   }
 }
+
+# excluded participants
+excluded_participants
 
 # filtered data (you can see participant 5 was removed for having too many of the same responses)
 filtered_participant_trials
