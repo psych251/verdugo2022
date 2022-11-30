@@ -14,9 +14,8 @@ output:
     toc_depth: '3'
 ---
 
-<!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
 
-##Introduction
+## Introduction
 
 The study 'Choice Boosts Curiosity' by Verdugo et al. (2022, Psychological Science) tested the effect of choice on curiosity when controlling for prechoice preference. Experiments tested if a participant's choice of a given lottery affected their subsequent curiosity about the results of the lottery. The target finding for replication is the increase in curiosity due to choice.
 
@@ -26,21 +25,21 @@ Link to original paper: <https://github.com/psych251/verdugo2022/blob/main/origi
 
 Link to paradigm: <https://stanforduniversity.qualtrics.com/jfe/form/SV_eIETWpUoMKe1vHU>
 
-##Methods
+## Methods
 
-###Power Analysis
+### Power Analysis
 
 The authors concluded that a sample size of at least 34 "would allow [them] to detect a within-subjects difference of at least a medium effect size (Cohen's d \> 0.5) with 80% power, using a two-tailed t test" (Verdugo et al., 2022).
 
-###Planned Sample
+### Planned Sample
 
 Sample size: n \>= 80 (much shorter length of experiment calls for more participants) Demographics: Age 20-40, English speaking
 
-###Materials
+### Materials
 
 Survey recreated in Qualtrics. Random lotteries with comparable expected values (all within 1 point) and comparable outcome uncertainties (all within 50 points) generated using a Python program I wrote. Participants recruited via Prolific. Data processed using R programming language.
 
-###Procedure
+### Procedure
 
 The replication procedure follows the Experiment 1 procedure outlined in the original paper:
 
@@ -50,14 +49,15 @@ The replication procedure follows the Experiment 1 procedure outlined in the ori
 
 See Differences from Original Study for exceptions made to procedure.
 
-###Analysis Plan
+### Analysis Plan
 
-Key measure: Average difference in self-reported curiosity between Choice/Preferred and No-Choice/Preferred trials
+Key analysis of interest: Two-tailed t test measuring difference in self-reported curiosity between Choice/Preferred and No-Choice/Preferred conditions.
 
-###Differences from Original Study
+### Differences from Original Study
 
 -   Only Experiment 1 from the original study will be replicated. Only the key claim of the paper (the difference in curiosity between Choice/Preferred and No-Choice/Preferred conditions) will be measured. Curiosity as a function of expected value and outcome uncertainty will not be discussed.
 -   The experiment will be run as a survey in Qualtrics rather than via the Presentation software (as in original study).
+- The sample will likely be different. I believe the original sample consisted only of people from the Netherlands. The sample of the original experiment was as follows: "The final sample in Experiment 1 (N = 34) included 26 women (age: M = 23.5 years, SD = 4.5); the final sample in Experiment 2 (N = 34) included 24 women (age: M = 23.5 years, SD = 3.1). All participants had normal or corrected-to-normal vision. Both experiments were approved by the local ethics committee (CMO Arnhem-Nijmegen, The Netherlands) under the general ethics approval for standard studies conducted at the Donders Centre for Cognitive Neuroimaging (CMO 2019/288 v. 2.2). Prior to participation, all participants gave written informed consent according to the Declaration of Helsinki." (Verdugo et al., 2022).
 -   Participants will not give a verbal summary of instructions. Instead, they will acknowledge having read written instructions and will participate in an interactive tutorial with two practice trials (one choice and one no-choice) rather than 20 practice trials as in the original study.
 -   A smaller selection of lotteries will be included due to time constraint. There will be 6 unique lotteries, so 12 total trials (one choice and one no-choice for each lottery).
 -   There will be no timed element to the survey in order to give participants time to answer questions accurately, taking into account that the initial training is far less intensive than in the original study, and the setting is remote rather than in-person. This will prevent haphazard responses that may occur with timed questions and missed responses due to auto-advancement.
@@ -68,43 +68,50 @@ Key measure: Average difference in self-reported curiosity between Choice/Prefer
 
 #### Differences from pre-data collection methods plan
 
-##Results
+## Results
 
 ### Data preparation
 
-I will closely follow the data preparation outlined in the original paper:
+I will closely follow the data preparation and exclusion criteria outlined in the original paper:
+
+"Thirty-seven healthy individuals participated in Experiment 1, and another 40 healthy individuals participated in Experiment 2. Following our preregistration (https://osf.io/gseqn/), we excluded participants who missed more than 10% of total trials (Criterion 1). Additionally, we excluded participants who scored poorly according to at least one of two other performance criteria. Criterion 2 was when a participant gave the same curiosity rating in more than two thirds of their responses in Experiment 1 or made the same willingness-to-wait decision in more than 90% of their responses in Experiment 2. Criterion 3 was when a participant ranked lower than 3 standard deviations below the mean in choice-preference coherence (i.e., frequency of trials on which a participant chose the same vase that they had previously indicated that they preferred). We excluded three participants from Experiment 1 (one on the basis of Criterion 2 and two on the basis of Criterion 3) and six participants from Experiment 2 (five on the basis of Criterion 2 and one on the basis of Criterion 3). No participants were excluded on the basis of Criterion 1. The final sample in Experiment 1 (N = 34) included 26 women (age: M = 23.5 years, SD = 4.5); the final sample in Experiment 2 (N = 34) included 24 women (age: M = 23.5 years, SD = 3.1)" (Verdugo et al., 2022).
+
+I will follow the criterion of exluding participants who gave the same curiosity rating in more than two thirds of their responses. However, instead of excluding participants who missed more than 10% of 116 trials (as in the original experiment), I will simply exclude those who did not finish all of 6 trials (12 total games) in this experiment, which, since it is far fewer than in the original and not subject to timed auto-advancement, can have a stricter exclusion criterion.
 
 "We filtered out trials in which participants missed or did not respond within the allocated times for any of the three required responses (0.37% of total trials in Experiment 1; 0.37% in Experiment 2). Furthermore, we filtered out choice trials in which participants had chosen a lottery other than their preferred one (2.73% of total trials in Experiment 1; 2.93% in Experiment 2). Because we expected participants to exhibit their preferences through their choices, we assumed that inconsistencies were due to changes of mind or response errors.
 We sorted the remaining trials into three selection conditions: choice-preferred trials (48.61% of included trials in Experiment 1; 48.42% in Experiment 2), no-choice/preferred trials (25.72% of included trials in Experiment 1; 25.79% in Experiment 2), and no-choice/not-preferred trials (25.67% of included trials in Experiment 1; 25.79% in Experiment 2)" (Verdugo et al., 2022).
 
-I will discount responses from participants who took far too long to complete the survey (>16 minutes) and those who were unreasonably fast (<4 and a half minutes). Within participant responses, I will not include trials in which participants chose a different vase than the one they preferred.
+I will discount responses from participants who took far too long to complete the survey (>16 minutes) and those who were unreasonably fast (<4 and a half minutes). Within participant responses, I will not include trials in which participants chose a different vase than the one they preferred. Finally, I will sort the remaining data into the same three selection conditions.
 
 ```{r}
 # load data
 library(tidyverse)
 library(dplyr)
-cc_data <- read.csv('/Users/austinweideman/Desktop/surveydata.csv')
+cc_data <- read.csv('/Users/austinweideman/Desktop/surveytestdata.csv')
 data <- cc_data
-view(data)
+# view(data)
 ```
 
 ```{r}
+# organize all participant trial data into table
 all_participant_trials <- data.frame(matrix(ncol = 5, nrow = 0))
 
+# create the table, keeping in mind exclusions
 i = 1
-num_valid_participants = 0
+num_participants = 0
 for (row in 3:nrow(data)) {
   participant_row <- data[c(row),]
   
-  # move to next participant if duration of survey is unreasonably fast or slow
-  # move to next participant if current participant did not complete survey
   duration <- strtoi(participant_row['Duration..in.seconds.'])
   finished <- participant_row['Finished']
+  
+  # move to next participant if duration of survey is unreasonably fast or slow
+  # or if current participant did not complete survey
   if (duration < 255 || duration > 1000 || finished == 'False') {
     next
   }
   else {
-    num_valid_participants = num_valid_participants + 1
+    num_participants = num_participants + 1
   }
   t1 = participant_row %>% dplyr::select(T1.C.Preference, T1.Choice.Vase, T1.C.Curiosity_1, T1.NC.Curiosity_1, T1Pref)
   t2 = participant_row %>% dplyr::select(T2.C.Preference, T2.Choice.Vase, T2.C.Curiosity_1, T2.NC.Curiosity_1, T2Pref)
@@ -125,26 +132,91 @@ for (row in 3:nrow(data)) {
 colnames(all_participant_trials) <- c('Participant', 'Trial', 'C_Preference', 'Choice', 'C_Curiosity', 'NC_Curiosity', 'NC_Preferred')
 rownames(all_participant_trials) <- NULL
 
-# below are all essential data from all 6 trials for each valid participant
+# number of participants
+num_participants
+
+# essential data from all 6 trials for all valid participants
 all_participant_trials
-# total number of valid participant
-num_valid_participants
 ```
 
 ```{r}
-# clean data by excluding trials in which preference does not match choice
-all_participant_trials <- all_participant_trials %>% filter(C_Preference == Choice)
-all_participant_trials
+# clean data by excluding participants who gave the same curiosity rating for more than two thirds of their responses
+
+filtered_participant_trials <- all_participant_trials
+
+for (participant in 1:num_participants) {
+  num1 <- 0
+  num2 <- 0
+  num3 <- 0
+  num4 <- 0
+  part_data <- all_participant_trials %>% filter(Participant == participant)
+  for (row in 1: nrow(part_data)) {
+    if (part_data[row, 'C_Curiosity'] == '1') {
+      num1 <- num1 + 1
+    }
+    if (part_data[row, 'NC_Curiosity'] == '1') {
+      num1 <- num1 + 1
+    }
+    if (part_data[row, 'C_Curiosity'] == '2') {
+      num2 <- num2 + 1
+    }
+    if (part_data[row, 'NC_Curiosity'] == '2') {
+      num2 <- num2 + 1
+    }
+    if (part_data[row, 'C_Curiosity'] == '3') {
+      num3 <- num3 + 1
+    }
+    if (part_data[row, 'NC_Curiosity'] == '3') {
+      num3 <- num3 + 1
+    }
+    if (part_data[row, 'C_Curiosity'] == '4') {
+      num4 <- num4 + 1
+    }
+    if (part_data[row, 'NC_Curiosity'] == '4') {
+      num4 <- num4 + 1
+    }
+  }
+  counts <- c(num1, num2, num3, num4)
+  if (max(counts) > 8) {
+    filtered_participant_trials <- filtered_participant_trials %>% filter(Participant != participant)
+  }
+}
+
+# filtered data (you can see participant 5 was removed for having too many of the same responses)
+filtered_participant_trials
+```
+
+
+```{r}
+# further clean data by excluding those trials in which preference does not match choice
+filtered_participant_trials <- filtered_participant_trials %>% filter(C_Preference == Choice)
+# here we see participant 6's last trial has been removed since their preference did not match their choice
+filtered_participant_trials
 # select all no-choice/preferred trials for analysis
-all_nc_preferred_trials <- all_participant_trials %>% filter(NC_Preferred == 'True')
-all_nc_preferred_trials
+nc_preferred_trials <- filtered_participant_trials %>% filter(NC_Preferred == 'True')
+nc_preferred_trials
 # select all no-choice/not preferred trials for analysis
-all_nc_not_pref_trials <- all_participant_trials %>% filter(NC_Preferred == 'False')
-all_nc_not_pref_trials
+nc_not_pref_trials <- filtered_participant_trials %>% filter(NC_Preferred == 'False')
+nc_not_pref_trials
+```
+```{r}
+# isolate score and reward information for each participant
+participant_rewards <- data.frame(matrix(ncol = 2, nrow = 0))
+
+for (row in 3:nrow(data)) {
+  participant_row <- data[c(row),]
+  scores = participant_row %>% dplyr::select(Score, Reward)
+  scores <- cbind(Participant = row-2, scores)
+  participant_rewards = rbind(participant_rewards, scores)
+}
+rownames(participant_rewards) <- NULL
+participant_rewards
+
 ```
 
 ```{r}
-participant2 <- all_participant_trials %>% filter(Participant == '2')
+# if we want, we can isolate one participant's data for analysis
+participant2 <- filtered_participant_trials %>% filter(Participant == '2')
 participant2
 ```
 
@@ -174,84 +246,94 @@ for (row in 1:nrow(participant2)) {
     divisor2 = divisor2 + 1
   }
 }
+# average choice/preferred curiosity rating across all choice games
+total_c_curiosity <- c_sum_pref + c_sum_not_pref
+avg_c_curiosity <- total_c_curiosity / nrow(participant2)
+avg_c_curiosity
+
 # average choice/preferred curiosity rating for those games with a matching no-choice/preferred game from this participant
 avg_c_pref <- c_sum_pref / divisor
 avg_c_pref
 
-# average no-choice/preferred curiosity rating for the same three games for the same participant
+# average no-choice/preferred curiosity rating across all no-choice/preferred games for this participant
 avg_nc_pref <- nc_sum_pref / divisor
 avg_nc_pref
 
-# average no-choice/not-preferred curiosity rating for all nc/not-preferred trials from this participant
+# average no-choice/not-preferred curiosity rating for all nc/not-preferred games from this participant
 avg_nc_not_pref <- nc_sum_not_pref / divisor2
 avg_nc_not_pref
 
-table <- c(avg_c_pref, avg_nc_pref, avg_nc_not_pref)
-barplot(table, main = 'Average Curiosity Ratings for Participant 2', names.arg=c('Choice/Pref', 'No-Choice/Pref', 'No-Choice/Not-Pref'))
+# plot results
+df <- data.frame(Curiosity= c(round(avg_c_curiosity, 2), round(avg_nc_pref, 2), round(avg_nc_not_pref, 2)), Conditions = c('Choice/Preferred', 'No Choice/Preferred', 'No Choice/Not Preferred'))
+library(ggplot2)
+plot <- ggplot(data=df, aes(x= reorder(Conditions, -Curiosity), y=Curiosity)) +
+  geom_bar(width = 0.75, stat="identity", fill=c('#4682B4', '#69b3a2', '#E3735E'))+
+  geom_text(aes(label=Curiosity), vjust=1.6, color="white", size=3.5)+
+  theme_minimal()
+plot <- plot + ggtitle("Average Curiosity Ratings (Participant 2)") +
+  xlab("") + ylab("Curiosity Rating") + theme(plot.title = element_text(hjust = 0.5)) + scale_y_continuous(breaks = seq(0, 4.0, 0.5)) + theme(plot.title = element_text(color = 'black', size = 14, face = "bold"))
+plot
 ```
 
 ```{r}
+# we can also calculate average curiosities across all participants
+
 c_sum_pref = 0
 nc_sum_pref = 0
 
-for (row in 1:nrow(all_nc_preferred_trials)) {
-  pref <- all_nc_preferred_trials[row, 'NC_Preferred']
-  c_curiosity <- strtoi(all_nc_preferred_trials[row, 'C_Curiosity'])
-  nc_curiosity <- strtoi(all_nc_preferred_trials[row, 'NC_Curiosity'])
+for (row in 1:nrow(nc_preferred_trials)) {
+  pref <- nc_preferred_trials[row, 'NC_Preferred']
+  c_curiosity <- strtoi(nc_preferred_trials[row, 'C_Curiosity'])
+  nc_curiosity <- strtoi(nc_preferred_trials[row, 'NC_Curiosity'])
   c_sum_pref <- c_sum_pref + c_curiosity
   nc_sum_pref <- nc_sum_pref + nc_curiosity
 }
 
 c_all_sum = 0
-for (row in 1:nrow(all_participant_trials)) {
-  c_curiosity <- strtoi(all_participant_trials[row, 'C_Curiosity'])
+for (row in 1:nrow(filtered_participant_trials)) {
+  c_curiosity <- strtoi(filtered_participant_trials[row, 'C_Curiosity'])
   c_all_sum <- c_all_sum + c_curiosity
 }
 
 nc_notpref_sum = 0
-for (row in 1:nrow(all_nc_not_pref_trials)) {
-  nc_curiosity <- strtoi(all_participant_trials[row, 'NC_Curiosity'])
+for (row in 1:nrow(nc_not_pref_trials)) {
+  nc_curiosity <- strtoi(filtered_participant_trials[row, 'NC_Curiosity'])
   nc_notpref_sum <- nc_notpref_sum + nc_curiosity
 }
 
-# average choice/preferred curiosity ratings across ALL trials (including those with NC/not preferred trials), not just those with a matching NC/Preferred game
-avg_c_curiosity <- c_all_sum / (nrow(all_participant_trials))
+# average choice/preferred curiosity rating across all trials (including those matched with NC/not preferred games)
+avg_c_curiosity <- c_all_sum / (nrow(filtered_participant_trials))
 avg_c_curiosity
 
-# average choice/preferred curiosity rating for those trials with a matching no-choice/preferred game from all participants
-avg_c_pref <- c_sum_pref / (nrow(all_nc_preferred_trials))
+# average choice/preferred curiosity rating for those games with a matching no-choice/preferred game
+avg_c_pref <- c_sum_pref / (nrow(nc_preferred_trials))
 avg_c_pref
 
-# average no-choice/preferred curiosity rating for the same games
-avg_nc_pref <- nc_sum_pref / (nrow(all_nc_preferred_trials))
+# average no-choice/preferred curiosity rating for no-choice/preferred games
+avg_nc_pref <- nc_sum_pref / (nrow(nc_preferred_trials))
 avg_nc_pref
 
-# average no-choice/not-preferred curiosity rating for all nc/not-preferred trials
-avg_nc_not_pref <- nc_notpref_sum / (nrow(all_nc_not_pref_trials))
+# average no-choice/not-preferred curiosity rating for all nc/not-preferred games
+avg_nc_not_pref <- nc_notpref_sum / (nrow(nc_not_pref_trials))
 avg_nc_not_pref
 
-# barplot
-table <- c(avg_c_pref, avg_nc_pref, avg_nc_not_pref)
-barplot(table, main = 'Average Curiosity Ratings (All Participants)', names.arg=c('Choice/Pref', 'No-Choice/Pref', 'No-Choice/Not-Pref'))
-```
-
-```{r include=F}
-###Data Preparation
-
-####Load Relevant Libraries and Functions
-
-####Import data
-
-#### Data exclusion / filtering
-
-#### Prepare data for analysis - create columns etc.
+# plot results
+df <- data.frame(Curiosity= c(round(avg_c_curiosity, 2), round(avg_nc_pref, 2), round(avg_nc_not_pref, 2)), Conditions = c('Choice/Preferred', 'No Choice/Preferred', 'No Choice/Not Preferred'))
+library(ggplot2)
+plot <- ggplot(data=df, aes(x= reorder(Conditions, -Curiosity), y=Curiosity)) +
+  geom_bar(width = 0.75, stat="identity", fill=c('#4682B4', '#69b3a2', '#E3735E'))+
+  geom_text(aes(label=Curiosity), vjust=1.6, color="white", size=3.5)+
+  theme_minimal()
+plot <- plot + ggtitle("Average Curiosity Ratings (All Participants)") +
+  xlab("") + ylab("Curiosity Rating") + theme(plot.title = element_text(hjust = 0.5)) + scale_y_continuous(breaks = seq(0, 4.0, 0.5)) + theme(plot.title = element_text(color = 'black', size = 14, face = "bold"))
+plot
 ```
 
 ### Confirmatory analysis
 
 *Side-by-side graph with original graph is ideal here*
 
-###Exploratory analyses
+### Exploratory analyses
 
 ## Discussion
 
