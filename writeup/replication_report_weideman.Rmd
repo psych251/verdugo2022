@@ -53,7 +53,7 @@ See Differences from Original Study for exceptions made to procedure.
 
 ### Analysis Plan
 
-Key analysis of interest: Two-tailed t test measuring difference in self-reported curiosity between Choice/Preferred and No-Choice/Preferred conditions.
+Key analysis of interest: Contrast in self-reported curiosity between Choice/Preferred and No-Choice/Preferred conditions.
 
 ### Differences from Original Study
 
@@ -89,7 +89,7 @@ I will discount responses from participants who took far too long to complete th
 # load data
 library(tidyverse)
 library(dplyr)
-cc_data <- read.csv('/Users/austinweideman/Desktop/testdata.csv')
+cc_data <- read.csv('/Users/austinweideman/Desktop/pilotbdata.csv')
 data <- cc_data
 # view(data)
 ```
@@ -211,7 +211,7 @@ num_valid_participants
 # excluded participants
 excluded_participants
 
-# filtered data (you can see participant 5 was removed for having too many of the same responses)
+# filtered data
 filtered_participant_trials
 ```
 
@@ -228,9 +228,8 @@ filtered_participant_trials <- subset(filtered_participant_trials, select = -c(C
 filtered_participant_trials
 ```
 ```{r}
-# finally, we can convert this to long form for later analysis with brms
+# we can convert this data to long form for later analysis
 # we will have one column for conditions, and one for curiosity
-# conditions: 1 = choice preferred, 2 = no choice/preferred, 3 = no choice/not preferred
 
 filtered_participant_trials_long <- data.frame(matrix(ncol = 4, nrow = 0))
 colnames(filtered_participant_trials_long) <- c('Participant', 'Trial', 'Conditions', 'Curiosity')
@@ -241,44 +240,84 @@ for (row in 1:nrow(filtered_participant_trials)) {
   trial <- part_row[1, 'Trial']
   c_cur <- strtoi(part_row[1, 'C_Curiosity'])
   nc_cur <- strtoi(part_row[1, 'NC_Curiosity'])
-  new_choice_row <- c(participant, trial, 'Choice_Pref', c_cur)
+  new_choice_row <- c(participant, trial, 'Choice/Preferred', c_cur)
   filtered_participant_trials_long[nrow(filtered_participant_trials_long)+1,] = new_choice_row
   nc_condition <- part_row[1, 'NC_Preferred']
   if (nc_condition == 'True') {
-    new_nc_pref_row <- c(participant, trial, 'No_Choice_Pref', nc_cur)
+    new_nc_pref_row <- c(participant, trial, 'No_Choice/Preferred', nc_cur)
     filtered_participant_trials_long[nrow(filtered_participant_trials_long)+1,] = new_nc_pref_row
   }
   if (nc_condition == 'False') {
-    new_nc_not_pref_row <- c(participant, trial, 'No_Choice_Not_Pref', nc_cur)
+    new_nc_not_pref_row <- c(participant, trial, 'No_Choice/Not_Preferred', nc_cur)
     filtered_participant_trials_long[nrow(filtered_participant_trials_long)+1,] = new_nc_not_pref_row
   }
 }
 filtered_participant_trials_long$Curiosity <- as.numeric(filtered_participant_trials_long$Curiosity)
 filtered_participant_trials_long
 
+
+```
+```{r}
+# wide format for contrasts with brms
+# contrast 1: contrast choice/pref with no choice/pref
+# choice/pref: (1, 0). no choice/pref: (0, -1)
+# contrast 2: contrast no choice/pref with no choice/not pref
+# no choice/pref: (1, 0). no choice/not pref: (0, -1)
+filtered_participant_trials_wide <- data.frame(matrix(ncol = 6, nrow = 0))
+colnames(filtered_participant_trials_wide) <- c('Participant', 'Trial', 'is.choice_pref', 'is.nochoice_pref', 'is.nochoice_notpref', 'Curiosity')
+
+for (row in 1:nrow(filtered_participant_trials)) {
+  part_row <- filtered_participant_trials[row,]
+  participant <- part_row[1, 'Participant']
+  trial <- part_row[1, 'Trial']
+  c_cur <- strtoi(part_row[1, 'C_Curiosity'])
+  nc_cur <- strtoi(part_row[1, 'NC_Curiosity'])
+  new_choice_row <- c(participant, trial, 0.5, 0, NA, c_cur)
+  filtered_participant_trials_wide[nrow(filtered_participant_trials_wide)+1,] = new_choice_row
+  nc_condition <- part_row[1, 'NC_Preferred']
+  if (nc_condition == 'True') {
+    new_nc_pref_row <- c(participant, trial, -0.5, 0.5, NA, nc_cur)
+    filtered_participant_trials_wide[nrow(filtered_participant_trials_wide)+1,] = new_nc_pref_row
+  }
+  if (nc_condition == 'False') {
+    new_nc_not_pref_row <- c(participant, trial, 0, -0.5, NA, nc_cur)
+    filtered_participant_trials_wide[nrow(filtered_participant_trials_wide)+1,] = new_nc_not_pref_row
+  }
+}
+# convert to numeric
+filtered_participant_trials_wide$is.choice_pref <- as.numeric(filtered_participant_trials_wide$is.choice_pref)
+filtered_participant_trials_wide$is.nochoice_pref <- as.numeric(filtered_participant_trials_wide$is.nochoice_pref)
+filtered_participant_trials_wide$is.nochoice_notpref <- as.numeric(filtered_participant_trials_wide$is.nochoice_notpref)
+filtered_participant_trials_wide$Curiosity <- as.numeric(filtered_participant_trials_wide$Curiosity)
+filtered_participant_trials_wide
+
+
+
 ```
 
 
 ```{r}
-# select all no-choice/preferred trials for analysis
-nc_preferred_trials <- filtered_participant_trials %>% filter(NC_Preferred == 'True')
-nc_preferred_trials
-# select all no-choice/not preferred trials for analysis
-nc_not_pref_trials <- filtered_participant_trials %>% filter(NC_Preferred == 'False')
-nc_not_pref_trials
-
-# calculate average curiosity ratings across all valid participants in all selection conditions
-avg_all_c_curiosity <- mean(as.numeric(filtered_participant_trials$C_Curiosity))
-avg_all_nc_pref_curiosity <- mean(as.numeric(nc_preferred_trials$NC_Curiosity))
-avg_all_nc_not_pref_curiosity <- mean(as.numeric(nc_not_pref_trials$NC_Curiosity))
-
+# select all choice/preferred games
+choice_preferred_games_long <- filtered_participant_trials_long %>% filter(Conditions == 'Choice/Preferred')
+choice_preferred_games_long
 # average choice/preferred curiosity rating
+avg_all_c_curiosity <- mean(choice_preferred_games_long$Curiosity)
 avg_all_c_curiosity
 
+# select all no-choice/preferred games for analysis
+nc_preferred_trials <- filtered_participant_trials %>% filter(NC_Preferred == 'True')
+nc_preferred_games_long <- filtered_participant_trials_long %>% filter(Conditions == 'No_Choice/Preferred')
+nc_preferred_games_long
 # average no choice/preferred curiosity rating
+avg_all_nc_pref_curiosity <- mean(nc_preferred_games_long$Curiosity)
 avg_all_nc_pref_curiosity
 
+# select all no-choice/not preferred games for analysis
+nc_not_pref_trials <- filtered_participant_trials %>% filter(NC_Preferred == 'False')
+nc_not_pref_games_long <- filtered_participant_trials_long %>% filter(Conditions == 'No_Choice/Not_Preferred')
+nc_not_pref_games_long
 # average no choice/not preferred curiosity rating
+avg_all_nc_not_pref_curiosity <- mean(nc_not_pref_games_long$Curiosity)
 avg_all_nc_not_pref_curiosity
 ```
 
@@ -298,16 +337,17 @@ plot
 
 ```{r}
 # isolate score, reward, and prolific id for each participant
-participant_rewards <- data.frame(matrix(ncol = 3, nrow = 0))
-
-for (row in 3:nrow(data)) {
-  participant_row <- data[c(row),]
-  score_info = participant_row %>% dplyr::select(PROLIFIC_PID, Score, Reward)
-  scores <- cbind(Participant = row-2, score_info)
-  participant_rewards = rbind(participant_rewards, scores)
-}
-rownames(participant_rewards) <- NULL
-participant_rewards
+# commented out to avoid showing PROLIFIC_PIDs online
+# participant_rewards <- data.frame(matrix(ncol = 3, nrow = 0))
+# 
+# for (row in 3:nrow(data)) {
+#   participant_row <- data[c(row),]
+#   score_info = participant_row %>% dplyr::select(PROLIFIC_PID, Score, Reward)
+#   scores <- cbind(Participant = row-2, score_info)
+#   participant_rewards = rbind(participant_rewards, scores)
+# }
+# rownames(participant_rewards) <- NULL
+# participant_rewards
 
 ```
 ```{r}
@@ -345,10 +385,11 @@ participant2
 ```
 
 ```{r}
-# analysis: run brm with curiosity as dependent variable modeled on conditions
+# analysis: run brm with curiosity modeled on different selection conditions
 library(brms)
+library(lm.beta)
 
-brm.fit <- brm(Curiosity ~ Conditions, data = filtered_participant_trials_long, family = cumulative("logit"))
+brm.fit <- brm(Curiosity ~ is.choice_pref + is.nochoice_pref, data = filtered_participant_trials_wide, family = cumulative("logit"))
 
 summary(brm.fit)
 ```
