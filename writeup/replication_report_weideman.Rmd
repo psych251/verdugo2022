@@ -35,7 +35,9 @@ The authors concluded that a sample size of at least 34 "would allow [them] to d
 
 ### Planned Sample
 
-Sample size: n \>= 80 (much shorter length of experiment calls for more participants) Demographics: Age 20-40, English speaking
+Sample size: n = 80 (much shorter length of experiment calls for more participants)
+Budget limitations prevent a larger sample size.
+Demographics: Age 20-40, English speaking
 
 ### Materials
 
@@ -290,45 +292,47 @@ filtered_participant_trials_wide$is.nochoice_pref <- as.numeric(filtered_partici
 filtered_participant_trials_wide$is.nochoice_notpref <- as.numeric(filtered_participant_trials_wide$is.nochoice_notpref)
 filtered_participant_trials_wide$Curiosity <- as.numeric(filtered_participant_trials_wide$Curiosity)
 filtered_participant_trials_wide
-
-
-
 ```
-
 
 ```{r}
 # select all choice/preferred games
 choice_preferred_games_long <- filtered_participant_trials_long %>% filter(Conditions == 'Choice/Preferred')
 choice_preferred_games_long
-# average choice/preferred curiosity rating
+# average choice/preferred curiosity rating and standard deviation
 avg_all_c_curiosity <- mean(choice_preferred_games_long$Curiosity)
+sd_all_c_curiosity <- sd(choice_preferred_games_long$Curiosity)
 avg_all_c_curiosity
+sd_all_c_curiosity
 
 # select all no-choice/preferred games for analysis
 nc_preferred_trials <- filtered_participant_trials %>% filter(NC_Preferred == 'True')
 nc_preferred_games_long <- filtered_participant_trials_long %>% filter(Conditions == 'No_Choice/Preferred')
 nc_preferred_games_long
-# average no choice/preferred curiosity rating
+# average no choice/preferred curiosity rating and standard deviation
 avg_all_nc_pref_curiosity <- mean(nc_preferred_games_long$Curiosity)
+sd_all_nc_pref_curiosity <- sd(nc_preferred_games_long$Curiosity)
 avg_all_nc_pref_curiosity
+sd_all_nc_pref_curiosity
 
 # select all no-choice/not preferred games for analysis
 nc_not_pref_trials <- filtered_participant_trials %>% filter(NC_Preferred == 'False')
 nc_not_pref_games_long <- filtered_participant_trials_long %>% filter(Conditions == 'No_Choice/Not_Preferred')
 nc_not_pref_games_long
-# average no choice/not preferred curiosity rating
+# average no choice/not preferred curiosity rating and standard deviation
 avg_all_nc_not_pref_curiosity <- mean(nc_not_pref_games_long$Curiosity)
+sd_all_nc_not_pref_curiosity <- sd(nc_not_pref_games_long$Curiosity)
 avg_all_nc_not_pref_curiosity
+sd_all_nc_not_pref_curiosity
 ```
 
 ```{r}
 # plot average curioisities across all participants
-df <- data.frame(Curiosity= c(round(avg_all_c_curiosity, 2), round(avg_all_nc_pref_curiosity, 2), round(avg_all_nc_not_pref_curiosity, 2)), Conditions = c('Choice/Preferred', 'No Choice/Preferred', 'No Choice/Not Preferred'))
+df <- data.frame(Curiosity= c(round(avg_all_c_curiosity, 2), round(avg_all_nc_pref_curiosity, 2), round(avg_all_nc_not_pref_curiosity, 2)), sd = c(sd_all_c_curiosity, sd_all_nc_pref_curiosity, sd_all_nc_not_pref_curiosity), Conditions = c('Choice/Preferred', 'No Choice/Preferred', 'No Choice/Not Preferred'))
 library(ggplot2)
 plot <- ggplot(data=df, aes(x= reorder(Conditions, -Curiosity), y=Curiosity)) +
   geom_bar(width = 0.7, stat="identity", fill=c('#D2042D', '#0047AB', '#808080'))+
-  geom_text(aes(label=Curiosity), vjust=1.6, color="white", size=3.5)+
-  theme_minimal()
+  geom_text(aes(label=Curiosity), hjust = 2, vjust=1.6, color="white", size=3.5)+
+  theme_minimal() + geom_errorbar(aes(ymin=Curiosity-sd, ymax=Curiosity+sd), width = 0.2)
 plot <- plot + ggtitle("Average Curiosity Ratings Across All Participants") +
   xlab("") + ylab("Curiosity Rating") + theme(plot.title = element_text(hjust = 0.5)) + scale_y_continuous(breaks = seq(0, 4.0, 0.5)) + theme(plot.title = element_text(color = 'black', size = 14, face = "bold"))
 plot
@@ -350,6 +354,7 @@ plot
 # participant_rewards
 
 ```
+
 ```{r}
 # create a table showing average curiosity ratings in all 3 conditions for each participant
 
@@ -387,7 +392,6 @@ participant2
 ```{r}
 # analysis: run brm with curiosity modeled on different selection conditions
 library(brms)
-library(lm.beta)
 
 brm.fit <- brm(Curiosity ~ is.choice_pref + is.nochoice_pref, data = filtered_participant_trials_wide, family = cumulative("logit"))
 
