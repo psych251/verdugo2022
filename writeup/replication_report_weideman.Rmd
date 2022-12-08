@@ -17,7 +17,7 @@ output:
 
 ## Introduction
 
-The study 'Choice Boosts Curiosity' by Verdugo et al. (2022, Psychological Science) tested the effect of choice on curiosity when controlling for prechoice preference. Experiments tested if a participant's choice of a given lottery affected their subsequent curiosity about the results of the lottery. The target finding for replication is the increase in curiosity due to choice.
+The study 'Choice Boosts Curiosity' by Verdugo et al. (2022, Psychological Science) tested the effect of choice on curiosity independent of pre-choice preference. Experiments tested if a participant's choice of a given lottery affected their subsequent curiosity about the results of the lottery. The target finding for replication is the increase in curiosity due to choice.
 
 Link to githhub repository: <https://github.com/psych251/verdugo2022>
 
@@ -31,11 +31,11 @@ Link to paradigm: <https://stanforduniversity.qualtrics.com/jfe/form/SV_eIETWpUo
 
 ### Power Analysis
 
-The authors concluded that a sample size of at least 34 "would allow [them] to detect a within-subjects difference of at least a medium effect size (Cohen's d \> 0.5) with 80% power, using a two-tailed t test" (Verdugo et al., 2022).
+The authors concluded that a sample size of at least 34 "would allow [them] to detect a within-subjects difference of at least a medium effect size (Cohen's d \> 0.5) with 80% power, using a two-tailed t test" (Verdugo et al., 2022). However, keeping in mind the number of trials done in the original study (116 per participant), the total number of data points is actually relatively high. Considering I only have 6 trials (12 games, one choice, one no choice for each trial), I need to recruit more participants to compensate for this lack of data points.
 
 ### Planned Sample
 
-Sample size: n = 80 (much shorter length of experiment calls for more participants)
+Sample size: N = 83 (much fewer number of trials calls for more participants).
 Budget limitations prevent a larger sample size.
 Demographics: Age 20-40, English speaking
 
@@ -55,7 +55,7 @@ See Differences from Original Study for exceptions made to procedure.
 
 ### Analysis Plan
 
-Key analysis of interest: Contrast in self-reported curiosity between Choice/Preferred and No-Choice/Preferred conditions.
+Key analysis of interest: Contrast in self-reported curiosity between Choice/Preferred and No-Choice/Preferred conditions (coefficient reported from brms function with 95% CI).
 
 ### Differences from Original Study
 
@@ -63,8 +63,9 @@ Key analysis of interest: Contrast in self-reported curiosity between Choice/Pre
 -   The experiment will be run as a survey in Qualtrics rather than via the Presentation software (as in original study).
 - The sample will likely be different. I believe the original sample consisted only of people from the Netherlands. The sample of the original experiment was as follows: "The final sample in Experiment 1 (N = 34) included 26 women (age: M = 23.5 years, SD = 4.5); the final sample in Experiment 2 (N = 34) included 24 women (age: M = 23.5 years, SD = 3.1). All participants had normal or corrected-to-normal vision. Both experiments were approved by the local ethics committee (CMO Arnhem-Nijmegen, The Netherlands) under the general ethics approval for standard studies conducted at the Donders Centre for Cognitive Neuroimaging (CMO 2019/288 v. 2.2). Prior to participation, all participants gave written informed consent according to the Declaration of Helsinki." (Verdugo et al., 2022).
 -   Participants will not give a verbal summary of instructions. Instead, they will acknowledge having read written instructions and will participate in an interactive tutorial with two practice trials (one choice and one no-choice) rather than 20 practice trials as in the original study.
+- Bonus payment will be directly proportional to number of points, ie. for every 10 points, a participant earns 1 cent bonus. Average bonus is about 50 cents per participant.
 -   A smaller selection of lotteries will be included due to time constraint. There will be 6 unique lotteries, so 12 total trials (one choice and one no-choice for each lottery).
--   There will be no timed element to the survey in order to give participants time to answer questions accurately, taking into account that the initial training is far less intensive than in the original study, and the setting is remote rather than in-person. This will prevent haphazard responses that may occur with timed questions and missed responses due to auto-advancement.
+-   There will be no explicit time pressure to the survey in order to give participants time to answer questions accurately, taking into account that the initial training is far less intensive than in the original study, and the setting is remote rather than in-person. This will prevent haphazard responses that may occur with timed questions and missed responses due to auto-advancement. With that being said, the data exclusion criteria do exclude participants who completed the survey unreasonably fast or slow.
 
 ### Methods Addendum (Post Data Collection)
 
@@ -261,10 +262,7 @@ filtered_participant_trials_long
 ```
 ```{r}
 # wide format for contrasts with brms
-# contrast 1: contrast choice/pref with no choice/pref
-# choice/pref: (1, 0). no choice/pref: (0, -1)
-# contrast 2: contrast no choice/pref with no choice/not pref
-# no choice/pref: (1, 0). no choice/not pref: (0, -1)
+# set contrast codes for three variables: is.choice_pref, is.nochoice.pref, and is.nochoice_notpref
 filtered_participant_trials_wide <- data.frame(matrix(ncol = 6, nrow = 0))
 colnames(filtered_participant_trials_wide) <- c('Participant', 'Trial', 'is.choice_pref', 'is.nochoice_pref', 'is.nochoice_notpref', 'Curiosity')
 
