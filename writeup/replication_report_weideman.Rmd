@@ -17,7 +17,7 @@ output:
 
 ## Introduction
 
-The study 'Choice Boosts Curiosity' by Verdugo et al. (2022, Psychological Science) tested the effect of choice on curiosity independent of pre-choice preference. Experiments tested if a participant's choice of a given lottery affected their subsequent curiosity about the results of the lottery. The target finding for replication is the increase in curiosity due to choice.
+The study 'Choice Boosts Curiosity' by Verdugo et al. (2022, Psychological Science) tested the effect of choice on curiosity independent of prechoice preference. In other words, the authors wanted to know if people are more curious about a preferred option which they choose themselves than a preferred option which is chosen for them. Experiments tested if a participant's choice of a given lottery affected their subsequent curiosity about the results of the lottery. The authors found that people exhibited greater curiosity about things that they chose themselves rather than things that were chosen for them. The finding for replication is this statistically significant contrast in curiosity between conditions of choice and no choice, spefically that "choice enhanced curiosity; participants were more curious about lotteries that they had chosen themselves... This was the case when curiosity was measured explicitly (brms contrast: 95% CI = [0.46, 0.71]" (Verdugo et al, 2022).
 
 Link to githhub repository: <https://github.com/psych251/verdugo2022>
 
@@ -27,25 +27,27 @@ Sagepub: https://journals.sagepub.com/doi/full/10.1177/09567976221082637
 
 Link to paradigm: <https://stanforduniversity.qualtrics.com/jfe/form/SV_eIETWpUoMKe1vHU>
 
+Link to preregistration: https://osf.io/85vx7/
+
 ## Methods
 
 ### Power Analysis
 
-The authors concluded that a sample size of at least 34 "would allow [them] to detect a within-subjects difference of at least a medium effect size (Cohen's d \> 0.5) with 80% power, using a two-tailed t test" (Verdugo et al., 2022). However, keeping in mind the number of trials done in the original study (116 per participant), the total number of data points is actually relatively high. Considering I only have 6 trials (12 games, one choice, one no choice for each trial), I need to recruit more participants to compensate for this lack of data points.
+The key statistic is the associated 95% posterior credible interval for the contrast in curiosity ratings (using brms with family cumulative logit) between choice/preferred and no choice/preferred conditions. The authors concluded that a sample size of at least 34 "would allow [them] to detect a within-subjects difference of at least a medium effect size (Cohen's d \> 0.5) with 80% power, using a two-tailed t test" (Verdugo et al., 2022). However, keeping in mind the number of trials done in the original study (116 per participant), the total number of data points is relatively high. Considering my implementation only has 6 trials (12 games, one choice, one no choice for each trial) to keep the length reasonable for remote users, I will recruit more participants to compensate for the lack of data points.
 
 ### Planned Sample
 
-Sample size: N = 83 (much fewer number of trials calls for more participants).
-Budget limitations prevent a larger sample size.
-Demographics: Age 20-40, English speaking
+The original sample was outlined as follows: "The final sample in Experiment 1 (N = 34) included 26 women (age: M = 23.5 years, SD = 4.5); the final sample in Experiment 2 (N = 34) included 24 women (age: M = 23.5 years, SD = 3.1). All participants had normal or corrected-to-normal vision. Both experiments were approved by the local ethics committee (CMO Arnhem-Nijmegen, The Netherlands) under the general ethics approval for standard studies conducted at the Donders Centre for Cognitive Neuroimaging (CMO 2019/288 v. 2.2). Prior to participation, all participants gave written informed consent according to the Declaration of Helsinki." (Verdugo et al., 2022).
+
+The planned sample for this replication is N = 83, as the fewer number of trials call for more participants, but budget limitations prevent a larger sample size. Participants will be age 20-40, English speaking, and of US nationality, as this is the sample I am interested in studying.
 
 ### Materials
 
-Survey recreated in Qualtrics. Random lotteries with comparable expected values (all within 1 point) and comparable outcome uncertainties (all within 50 points) generated using a Python program I wrote. Participants recruited via Prolific. Data processed using R programming language.
+The lottery game was recreated in Qualtrics. Random pairs of lotteries containing vases with comparable expected values (all within 1 point) and comparable outcome uncertainties (all within 50 points) were generated using a Python program I wrote. Pairs of lotteries, however, varied in expected value and outcome uncertainty to ensure a diversity of games. Participants were recruited via Prolific. Data was processed using R statistical programming language.
 
 ### Procedure
 
-The replication procedure follows the Experiment 1 procedure outlined in the original paper:
+The replication procedure closely follows the Experiment 1 procedure outlined in the original paper as follows:
 
 "To assess the effect of choice on curiosity, we designed an experimental task in which we manipulated, on a trial-to-trial basis, whether participants made a choice or not and measured their subsequent curiosity. In each trial of the task, participants saw two lotteries, but only one was selected and played. Lotteries were depicted in the form of vases containing marbles, accompanied by a label indicating the number of points associated with each marble. Each vase contained 20 marbles of two types: blue and red. A marble could be worth any number from 10 to 90 points, in steps of 10 (10 points, 20 points, 30 points, etc.). The two types of marbles within a lottery always had different values. The distribution of marbles of each type within the vase ranged from 5% to 95% in steps of five (5%--95% of vase, 10%--90% of vase, 15%--85% of vase, etc.). On some trials, the participant chose the selected lottery, whereas on other trials, the computer selected it for them. Participants were told that they would always earn a monetary payoff in proportion to the points associated with the outcome of the selected lottery but that they could not always see the outcome after each trial. At the end of each trial, we assessed participants' curiosity using ratings (Experiment 1: explicit curiosity)..."
 
@@ -55,58 +57,85 @@ See Differences from Original Study for exceptions made to procedure.
 
 ### Analysis Plan
 
-Key analysis of interest: Contrast in self-reported curiosity between Choice/Preferred and No-Choice/Preferred conditions (coefficient reported from brms function with 95% CI).
+The analysis plan for the replication closely follows part of the analysis done in the original paper, which is outlined as follows:
+
+First, they "read in, concatenated, filtered, and summarized the data using RStudio". See "Data Preparation" for details regarding exclusions.
+
+"We sorted... trials into three selection conditions: choice-preferred trials (48.61% of included trials in Experiment 1; 48.42% in Experiment 2), no-choice/preferred trials (25.72% of included trials in Experiment 1; 25.79% in Experiment 2), and no-choice/not-preferred trials (25.67% of included trials in Experiment 1; 25.79% in Experiment 2)...
+
+"We modeled the data using the brm function of the brms package (Version 2.13.0) in the R programming environment (Bürkner, 2017, 2018), fitting a cumulative-logit model for the ordinal response data from Experiment 1...
+
+"The dependent variable in Experiment 1 was curiosity rating, an ordinal variable containing the values 1, 2, 3, and 4...
+
+"The independent variables of interest were selection condition (choice preferred, no choice/preferred, and no choice/not preferred)...
+
+"Selection condition was a factor with three levels, for which we created two sum-to-zero contrasts. We contrasted choice-preferred with no-choice/preferred trials to assess the effect of choice, and no-choice/preferred with no-choice/not-preferred trials to assess the effect of preference. With categorical predictors, brms provides estimates only for each contrast and not for the factor as a whole. Given that we were interested in disentangling the effects of choice and preference, this was suitable. Hence, in the results of the analysis with brms, we report statistics only for each contrast and not for the factor of selection condition as a whole...
+
+We fitted the models using four chains with 10,000 iterations (5,000 for warm-up) and inspected the model summaries for convergence (paying attention to 𝑅ˆ and effective-sample-size values) as well as the plots for chain iterations. We used the default priors of the brms package (Cauchy priors and Lewandowski-Kurowicka-Joe priors for correlation parameters; Bürkner, 2017). We considered coefficients to be statistically significant if the associated 95% posterior credible intervals did not overlap with zero" (Verdugo et al., 2022).
+
+Thus, the key analysis of interest is the contrast in self-reported curiosity between Choice/Preferred and No-Choice/Preferred conditions. The contrast takes the form of a coefficient reported by brms function, and the key statistical test is the 95% confidence interval for this coefficient. If it does not overlap with zero, then the contrast can be considered statistically significant.
 
 ### Differences from Original Study
 
--   Only Experiment 1 from the original study will be replicated. Only the key claim of the paper (the difference in curiosity between Choice/Preferred and No-Choice/Preferred conditions) will be measured. Curiosity as a function of expected value and outcome uncertainty will not be discussed.
--   The experiment will be run as a survey in Qualtrics rather than via the Presentation software (as in original study).
-- The sample will likely be different. I believe the original sample consisted only of people from the Netherlands. The sample of the original experiment was as follows: "The final sample in Experiment 1 (N = 34) included 26 women (age: M = 23.5 years, SD = 4.5); the final sample in Experiment 2 (N = 34) included 24 women (age: M = 23.5 years, SD = 3.1). All participants had normal or corrected-to-normal vision. Both experiments were approved by the local ethics committee (CMO Arnhem-Nijmegen, The Netherlands) under the general ethics approval for standard studies conducted at the Donders Centre for Cognitive Neuroimaging (CMO 2019/288 v. 2.2). Prior to participation, all participants gave written informed consent according to the Declaration of Helsinki." (Verdugo et al., 2022).
--   Participants will not give a verbal summary of instructions. Instead, they will acknowledge having read written instructions and will participate in an interactive tutorial with two practice trials (one choice and one no-choice) rather than 20 practice trials as in the original study.
-- Bonus payment will be directly proportional to number of points, ie. for every 10 points, a participant earns 1 cent bonus. Average bonus is about 50 cents per participant.
--   A smaller selection of lotteries will be included due to time constraint. There will be 6 unique lotteries, so 12 total trials (one choice and one no-choice for each lottery).
--   There will be no explicit time pressure to the survey in order to give participants time to answer questions accurately, taking into account that the initial training is far less intensive than in the original study, and the setting is remote rather than in-person. This will prevent haphazard responses that may occur with timed questions and missed responses due to auto-advancement. With that being said, the data exclusion criteria do exclude participants who completed the survey unreasonably fast or slow.
+There were several notable deviations from the original study, all of which are listed below.
+
+-   Only Experiment 1 from the original study will be replicated.
+- Only the key claim of this experiment, (the contrast in self-reported curiosity between Choice/Preferred and No-Choice/Preferred conditions) will be tested. Curiosity as a function of expected value and outcome uncertainty will not be discussed.
+-   The experiment was remote, rather than in the lab, took roughly 8.5 minutes to complete on average, and was implemented using Qualtrics. The original experiment was done in the lab and took roughly an hour and a half.
+- The original sample consisted of people from the Netherlands. The replication was done with US participants.
+-   Participants do not give a verbal summary of instructions. Instead, they acknowledge having read written instructions and participate in an interactive tutorial with two practice trials (one choice and one no-choice) rather than 20 practice trials as in the original study.
+- Bonus payment are directly proportional to number of points, ie. for every 10 points, a participant earns 1 cent bonus. The average bonus was about 50 cents per participant.
+-   A smaller selection of lotteries was included due to time constraint. There are 6 unique lotteries, so 12 total games (one choice and one no-choice game for each lottery).
+-   There is no explicit time pressure to the survey in order to give participants time to answer questions accurately, taking into account that the initial training is far less intensive than in the original study, and the setting is remote rather than in-person. This should prevent haphazard responses that may occur with timed questions and missed responses due to auto-advancement. With that being said, the data exclusion criteria do exclude participants who completed the survey unreasonably fast or slow.
 
 ### Methods Addendum (Post Data Collection)
 
 #### Actual Sample
 
-#### Differences from pre-data collection methods plan
+The actual sample (after exclusions) was N = 31. Participants were age 20-40, English speaking, and of US nationality.
 
-## Results
-
-### Data preparation
-
-I will closely follow the data preparation and exclusion criteria outlined in the original paper:
+I closely followed the data preparation and exclusion criteria outlined in the original paper, with some exceptions. The original exlcusions are as follows:
 
 "Thirty-seven healthy individuals participated in Experiment 1, and another 40 healthy individuals participated in Experiment 2. Following our preregistration (https://osf.io/gseqn/), we excluded participants who missed more than 10% of total trials (Criterion 1). Additionally, we excluded participants who scored poorly according to at least one of two other performance criteria. Criterion 2 was when a participant gave the same curiosity rating in more than two thirds of their responses in Experiment 1 or made the same willingness-to-wait decision in more than 90% of their responses in Experiment 2. Criterion 3 was when a participant ranked lower than 3 standard deviations below the mean in choice-preference coherence (i.e., frequency of trials on which a participant chose the same vase that they had previously indicated that they preferred). We excluded three participants from Experiment 1 (one on the basis of Criterion 2 and two on the basis of Criterion 3) and six participants from Experiment 2 (five on the basis of Criterion 2 and one on the basis of Criterion 3). No participants were excluded on the basis of Criterion 1. The final sample in Experiment 1 (N = 34) included 26 women (age: M = 23.5 years, SD = 4.5); the final sample in Experiment 2 (N = 34) included 24 women (age: M = 23.5 years, SD = 3.1)" (Verdugo et al., 2022).
 
-I will follow the criterion of exluding participants who gave the same curiosity rating in more than two thirds of their responses. However, instead of excluding participants who missed more than 10% of 116 trials (as in the original experiment), I will simply exclude those who did not finish all of 6 trials (12 total games) in this experiment, which, since it is far fewer than in the original and not subject to timed auto-advancement, can have a stricter exclusion criterion.
+They continue:
 
 "We filtered out trials in which participants missed or did not respond within the allocated times for any of the three required responses (0.37% of total trials in Experiment 1; 0.37% in Experiment 2). Furthermore, we filtered out choice trials in which participants had chosen a lottery other than their preferred one (2.73% of total trials in Experiment 1; 2.93% in Experiment 2). Because we expected participants to exhibit their preferences through their choices, we assumed that inconsistencies were due to changes of mind or response errors.
 We sorted the remaining trials into three selection conditions: choice-preferred trials (48.61% of included trials in Experiment 1; 48.42% in Experiment 2), no-choice/preferred trials (25.72% of included trials in Experiment 1; 25.79% in Experiment 2), and no-choice/not-preferred trials (25.67% of included trials in Experiment 1; 25.79% in Experiment 2)" (Verdugo et al., 2022).
 
-I will discount responses from participants who took far too long to complete the survey (>18 minutes) and those who were unreasonably fast (<4 and a half minutes). Within participant responses, I will not include trials in which participants chose a different vase than the one they preferred. Finally, I will sort the remaining data into the same three selection conditions.
+#### Differences from pre-data collection methods plan
+
+For Criterion 1, instead of excluding participants who missed more than 10% of 116 trials (as in the original experiment), I simply excluded those who did not finish all of 6 trials (12 total games) in this experiment. Since this experiment is far shorter in duration, contains fewer trials than the original, and is not subject to timed auto-advancement, it can be subjected to a stricter exclusion criterion. I followed Criterion 2 of excluding participants who gave the same curiosity rating in more than two thirds of their responses. Finally, for Criterion 3, I simply excluded participants whose choice of vase did not match their preference in more than half of trials (more than 3 of 6 trials) for reasons similar to the changes made to Criterion 1.
+
+Since the survey questions are not themselves timed, I instead discount responses from participants who took far too long to complete the entire survey (>18 minutes) and those who were unreasonably fast (<4.5 minutes) as the average time to complete the survey was about 8.5 minutes. Within participant responses, I do not include trials in which participants chose a different vase than the one they preferred. Finally, I sort the remaining data into the same three selection conditions.
+
+## Results
+
+### Data Preparation
+
+All of my code for reading-in, processing, and analyzing data is documented below.
 
 ```{r}
-# load data
+# load data from the Qualtrics .csv file
 library(tidyverse)
 library(dplyr)
-cc_data <- read.csv('/Users/austinweideman/Desktop/pilotbdata.csv')
-data <- cc_data
-# view(data)
+data <- read.csv('/Users/austinweideman/Desktop/choice_curiosity_data.csv')
 ```
 
 ```{r}
-# organize all participant trial data into table
+# here we organize all relevant data (eg. selection conditions, trial number, and curiosity ratings) for all trials and all participants, into one larger table
+
+# initialize the table
 all_participant_trials <- data.frame(matrix(ncol = 5, nrow = 0))
 
-# create the table, keeping in mind exclusions
+# maintain another table which keeps track of excluded participants and reasons for exclusion
 excluded_participants <- data.frame(matrix(ncol = 2, nrow = 0))
 colnames(excluded_participants) <- cbind('Excluded Participant', 'Reason')
+
+# iterate over desired rows in raw Qualtrics csv file (one row corresponds to one participant)
 i = 1
 num_participants = 0
-for (row in 3:nrow(data)) {
+for (row in 18:nrow(data)) {
   participant_row <- data[c(row),]
   participant <- row-2
   num_participants = num_participants + 1
@@ -114,23 +143,27 @@ for (row in 3:nrow(data)) {
   duration <- strtoi(participant_row['Duration..in.seconds.'])
   finished <- participant_row['Finished']
   
-  # move to next participant if duration of survey is unreasonably fast or slow
+  # move to next participant row if duration of survey is unreasonably fast or slow
   # or if current participant did not complete survey
   if (duration < 270) {
     excluded_part <- c(participant, 'Too Fast')
     excluded_participants[nrow(excluded_participants)+1,] <- excluded_part
+    num_participants = num_participants - 1
     next
   }
   if (duration > 1080) {
     excluded_part <- c(participant, 'Too Slow')
     excluded_participants[nrow(excluded_participants)+1,] <- excluded_part
+    num_participants = num_participants - 1
     next
   }
   if (finished == 'False') {
     excluded_part <- c(participant, 'Unfinished')
     excluded_participants[nrow(excluded_participants)+1,] <- excluded_part
+    num_participants = num_participants - 1
     next
   }
+  # create a smaller table containing all of the relevant trial data for the current participant
   t1 = participant_row %>% dplyr::select(T1.C.Preference, T1.Choice.Vase, T1.C.Curiosity_1, T1.NC.Curiosity_1, T1Pref)
   t2 = participant_row %>% dplyr::select(T2.C.Preference, T2.Choice.Vase, T2.C.Curiosity_1, T2.NC.Curiosity_1, T2Pref)
   t3 = participant_row %>% dplyr::select(T3.C.Preference, T3.Choice.Vase, T3.C.Curiosity_1, T3.NC.Curiosity_1, T3Pref)
@@ -145,16 +178,12 @@ for (row in 3:nrow(data)) {
   part_trials_data[nrow(part_trials_data) + 1,] = t6
   temp1 <- cbind(Trial = c('T1', 'T2', 'T3', 'T4', 'T5', 'T6'), part_trials_data)
   part_trials_data <- cbind(Participant = participant, temp1)
+  
+  # append the participant's trial table to the larger table containing all participant data
   all_participant_trials = rbind(all_participant_trials, part_trials_data)
 }
 colnames(all_participant_trials) <- c('Participant', 'Trial', 'C_Preference', 'Choice', 'C_Curiosity', 'NC_Curiosity', 'NC_Preferred')
 rownames(all_participant_trials) <- NULL
-
-# number of participants
-num_participants
-
-# excluded participants
-excluded_participants
 
 # essential data from all 6 trials for all participants
 all_participant_trials
@@ -202,36 +231,52 @@ for (participant in participants) {
   }
   counts <- c(num1, num2, num3, num4)
   if (max(counts) > 8) {
+    # participant gave the same rating in more than 8/12 (2/3) of games
     filtered_participant_trials <- filtered_participant_trials %>% filter(Participant != participant)
     excluded_part <- c(participant, 'Too many similar responses')
     excluded_participants[nrow(excluded_participants)+1,] <- excluded_part
     num_valid_participants <- num_valid_participants - 1
   }
 }
-# total number of valid participants
+
+```
+
+```{r}
+# exclude participants whose preference does not match their choice in more than half of trials
+
+participants <- filtered_participant_trials$Participant
+participants <- participants[!duplicated(participants)]
+
+for (participant in participants) {
+  part_data <- filtered_participant_trials %>% filter(Participant == participant)
+  choice_and_pref_not_matching <- part_data %>% filter(C_Preference != Choice)
+  if (nrow(choice_and_pref_not_matching) > 3) {
+    filtered_participant_trials <- filtered_participant_trials %>% filter(Participant != participant)
+    excluded_part <- c(participant, 'Too many choice/preference mismatches')
+    excluded_participants[nrow(excluded_participants)+1,] <- excluded_part
+    num_valid_participants <- num_valid_participants - 1
+  }
+}
+# total number of all valid participants after all exclusions
 num_valid_participants
 
-# excluded participants
+# all excluded participants and reasons for exclusion
 excluded_participants
 
-# filtered data
-filtered_participant_trials
 ```
 
 ```{r}
-# further clean data by excluding those trials in which preference does not match choice
+# further clean data by excluding all remaining trials in which preference does not match choice
 filtered_participant_trials <- filtered_participant_trials %>% filter(C_Preference == Choice)
 
-filtered_participant_trials
-```
-
-```{r}
 # we can now make this data more compact by removing vase information since it is no longer necessary
 filtered_participant_trials <- subset(filtered_participant_trials, select = -c(C_Preference, Choice))
+
+# final filtered table of all relevant trial data for all valid participants
 filtered_participant_trials
 ```
 ```{r}
-# we can convert this data to long form for later analysis
+# convert this table to long form for easier analysis
 # we will have one column for conditions, and one for curiosity
 
 filtered_participant_trials_long <- data.frame(matrix(ncol = 4, nrow = 0))
@@ -255,14 +300,16 @@ for (row in 1:nrow(filtered_participant_trials)) {
     filtered_participant_trials_long[nrow(filtered_participant_trials_long)+1,] = new_nc_not_pref_row
   }
 }
+# convert values to numeric for later analysis
 filtered_participant_trials_long$Curiosity <- as.numeric(filtered_participant_trials_long$Curiosity)
 filtered_participant_trials_long
 
 
 ```
 ```{r}
-# wide format for contrasts with brms
+# convert to wide format for contrasts with brms
 # set contrast codes for three variables: is.choice_pref, is.nochoice.pref, and is.nochoice_notpref
+
 filtered_participant_trials_wide <- data.frame(matrix(ncol = 6, nrow = 0))
 colnames(filtered_participant_trials_wide) <- c('Participant', 'Trial', 'is.choice_pref', 'is.nochoice_pref', 'is.nochoice_notpref', 'Curiosity')
 
@@ -272,14 +319,20 @@ for (row in 1:nrow(filtered_participant_trials)) {
   trial <- part_row[1, 'Trial']
   c_cur <- strtoi(part_row[1, 'C_Curiosity'])
   nc_cur <- strtoi(part_row[1, 'NC_Curiosity'])
+  
+  # set contrast code for a choice/preferred game
   new_choice_row <- c(participant, trial, 0.5, 0, NA, c_cur)
+  # add the choice/preferred game to the table
   filtered_participant_trials_wide[nrow(filtered_participant_trials_wide)+1,] = new_choice_row
+  
   nc_condition <- part_row[1, 'NC_Preferred']
   if (nc_condition == 'True') {
+    # set contrast code for a no choice/preferred game
     new_nc_pref_row <- c(participant, trial, -0.5, 0.5, NA, nc_cur)
     filtered_participant_trials_wide[nrow(filtered_participant_trials_wide)+1,] = new_nc_pref_row
   }
   if (nc_condition == 'False') {
+    # set contrast code for a no choice/not preferred game
     new_nc_not_pref_row <- c(participant, trial, 0, -0.5, NA, nc_cur)
     filtered_participant_trials_wide[nrow(filtered_participant_trials_wide)+1,] = new_nc_not_pref_row
   }
@@ -324,25 +377,23 @@ sd_all_nc_not_pref_curiosity
 ```
 
 ```{r}
-# plot average curioisities across all participants
-df <- data.frame(Curiosity= c(round(avg_all_c_curiosity, 2), round(avg_all_nc_pref_curiosity, 2), round(avg_all_nc_not_pref_curiosity, 2)), sd = c(sd_all_c_curiosity, sd_all_nc_pref_curiosity, sd_all_nc_not_pref_curiosity), Conditions = c('Choice/Preferred', 'No Choice/Preferred', 'No Choice/Not Preferred'))
+# obtain plot of average curiosities across all participants
+df <- data.frame(Curiosity= c(round(avg_all_c_curiosity, 2), round(avg_all_nc_pref_curiosity, 2), round(avg_all_nc_not_pref_curiosity, 2)), Conditions = c('Choice/Preferred', 'No Choice/Preferred', 'No Choice/Not Preferred'))
 library(ggplot2)
 plot <- ggplot(data=df, aes(x= reorder(Conditions, -Curiosity), y=Curiosity)) +
   geom_bar(width = 0.7, stat="identity", fill=c('#D2042D', '#0047AB', '#808080'))+
   geom_text(aes(label=Curiosity), hjust = 2, vjust=1.6, color="white", size=3.5)+
-  theme_minimal() + geom_errorbar(aes(ymin=Curiosity-sd, ymax=Curiosity+sd), width = 0.2)
+  theme_minimal()
 plot <- plot + ggtitle("Average Curiosity Ratings Across All Participants") +
   xlab("") + ylab("Curiosity Rating") + theme(plot.title = element_text(hjust = 0.5)) + scale_y_continuous(breaks = seq(0, 4.0, 0.5)) + theme(plot.title = element_text(color = 'black', size = 14, face = "bold"))
-plot
 ```
-
 
 ```{r}
 # isolate score, reward, and prolific id for each participant
-# commented out to avoid showing PROLIFIC_PIDs online
+# commented out to avoid showing identifiable information online
 # participant_rewards <- data.frame(matrix(ncol = 3, nrow = 0))
 # 
-# for (row in 3:nrow(data)) {
+# for (row in 18:nrow(data)) {
 #   participant_row <- data[c(row),]
 #   score_info = participant_row %>% dplyr::select(PROLIFIC_PID, Score, Reward)
 #   scores <- cbind(Participant = row-2, score_info)
@@ -350,62 +401,49 @@ plot
 # }
 # rownames(participant_rewards) <- NULL
 # participant_rewards
-
 ```
 
-```{r}
-# create a table showing average curiosity ratings in all 3 conditions for each participant
-
-participant_averages <- data.frame(matrix(ncol = 4, nrow = 0))
-
-participants <- filtered_participant_trials$Participant
-participants <- participants[!duplicated(participants)]
-
-for (cur_participant in participants) {
-  # filter for just this participant
-  participant_data <- filtered_participant_trials %>% filter(Participant == cur_participant)
-  
-  # isolate no choice/preferred and no choice/not preferred trials
-  p_nc_pref <- participant_data %>% filter(NC_Preferred == 'True')
-  p_nc_not_pref <- participant_data %>% filter(NC_Preferred == 'False')
-  
-  # take the mean of all curiosities
-  avg_c_curiosity <- mean(as.numeric(participant_data$C_Curiosity))
-  avg_nc_pref_curiosity <- mean(as.numeric(p_nc_pref$NC_Curiosity))
-  avg_nc_not_pref_curiosity <- mean(as.numeric(p_nc_not_pref$NC_Curiosity))
-  
-  participant_averages[nrow(participant_averages) + 1,] = c(cur_participant, avg_c_curiosity, avg_nc_pref_curiosity, avg_nc_not_pref_curiosity)
-}
-rownames(participant_averages) <- NULL
-colnames(participant_averages) <- c('Participant', 'Avg_C_Curiosity', 'Avg_NC_Pref_Curiosity', 'Avg_NC_Not_Pref_Curiosity')
-participant_averages
-```
+### Key Statistic
 
 ```{r}
-# if necessary, we can isolate one participant's data
-participant2 <- participant_averages %>% filter(Participant == 2)
-participant2
-```
-
-```{r}
-# analysis: run brm with curiosity modeled on different selection conditions
+# to obtain the key statistic, run brm with curiosity modeled on selection conditions
 library(brms)
+set.seed(1)
 
-brm.fit <- brm(Curiosity ~ is.choice_pref + is.nochoice_pref, data = filtered_participant_trials_wide, family = cumulative("logit"))
+brm.fit <- brm(Curiosity ~ is.choice_pref + is.nochoice_pref, data = filtered_participant_trials_wide, family = cumulative("logit"), chains = 4, iter = 10000, warmup = 5000)
+
+# the key statistic we are interested in is the 95% CI associated with the coefficient representing the contrast in curiosity ratings between choice/preferred and no choice/preferred conditions, the one labeled 'is.choice_pref'
+
+# note, brm gives a slightly different 95% CI every time, so the results noted in the analysis may be different than what is shown here in the code upon knitting
 
 summary(brm.fit)
 ```
 
+### Confirmatory Analysis
 
-### Confirmatory analysis
+The key statistic is the associated 95% posterior credible interval for the contrast in curiosity ratings (using brms with family cumulative logit) between choice/preferred and no choice/preferred conditions.
 
-*Side-by-side graph with original graph is ideal here*
+Original 95% CI = [0.46, 0.71]
 
-### Exploratory analyses
+Replication 95% CI = [-0.05, 0.99]
+
+The graphs below display the results of the original study and those of the replication.
+
+![Fig 1: Original Graph](/Users/austinweideman/Desktop/originalgraph.png)
+
+"The mean curiosity rating in each of the three selection conditions in Experiment 1 is shown as a function of (a) expected value and (b) outcome uncertainty. Curiosity ratings were given on a scale from 1 (not curious) to 4 (very curious)" (Verdugo et al., 2022).
+
+
+```{r}
+# replication graph
+plot
+```
+Fig 2: Replication Graph
+
+Mean curiosity ratings in all three selection conditions.
 
 ## Discussion
 
 ### Summary of Replication Attempt
 
-### Commentary
-
+The results of the replication were consistent with those of the original study in that average curiosity was highest in choice/preferred conditions, followed by no choice/preferred, and then no choice/not preferred. As you can see in the graphs above, the results are consistent (note that the original graph also displays curiosity as a function of expected value and outcome uncertainty, but the replication does not). However, the key finding of the original study that there was a statistically significant contrast in curiosity ratings between choice/preferred conditions and no choice/preferred conditions only partially replicated. The original study found that "choice enhanced curiosity; participants were more curious about lotteries that they had chosen themselves... This was the case when curiosity was measured explicitly (brms contrast: 95% CI = [0.46, 0.71]" (Verdugo et al, 2022). However, in this replication, the associated 95% CI ([-0.05, 0.99]) for the same contrast overlaps with zero, so the results of this replication cannot be considered statistically significant. However, the overlap is not large. It could therefore be the case that with more data, obtained either by recruiting more participants or by adding more trials to the survey, that this experiment would yield significant results. The large drop in participants from 83 to 31 due to exclusion criteria was unforeseen and is one reason for the deficit in data that may have led to these results. One potential cause for the large drop in participants were the differences in training and in-person environment. Potential improvements to the survey could include attention checks and adding more total trials.
